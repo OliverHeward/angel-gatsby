@@ -9,6 +9,7 @@ import React from "react"
 import "./sass/main.scss";
 
 import ButtonMenu from './ButtonMenu';
+import Footer from "./Footer";
 
 const Layout = ({ children }) => (
   <div className="app-wrapper">
@@ -16,6 +17,7 @@ const Layout = ({ children }) => (
       {children}
     </div>
     <ButtonMenu />
+    <Footer />
   </div>
 )
 

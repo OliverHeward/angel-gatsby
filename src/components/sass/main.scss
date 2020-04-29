@@ -253,6 +253,47 @@ div.grey-container {
     }
 }
 
+// Blog List Components
+.insight-wrapper {
+    height: auto;
+    width: 90%;
+    margin: 30px auto;
+    &.blog-post {
+        .insight-title {
+            margin-top: 0;
+        }
+    }
+        h3.insight-type {
+        text-transform: capitalize;
+        color: #000;
+        @include font-size(1.75);
+        margin: 0;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        margin: 10px 0;
+    }
+    div.text-container {
+        padding: 10px 0;
+        p.blog-content {
+            font-weight: 400;
+            @include font-size(1.2);
+        }
+        span {
+            color: $color__pink;
+            &.byline {
+                display: inline;
+            }
+        }
+        span.posted-on {
+            display: block;
+            margin-top: 20px;
+        }
+    }
+}
+
 // ===== UI COMPONENTS ===== //
 div.link-button {
     @include center-block;
@@ -265,5 +306,72 @@ div.link-button {
         text-decoration: none;
         font-weight: bold;
         color: #fff;
+    }
+}
+
+div.lets-talk {
+    background-color: $color__pink;
+    color: #fff;
+    text-align: center;
+    padding: 50px 10px 10px;
+    h1.big-font {
+        max-width: 450px;
+        margin: 0 auto;
+        a {
+            color: #000;
+            cursour: pointer;
+            text-decoration: none;
+        }
+    }
+}
+
+// ====== Footer ======= //
+
+footer.site-footer {
+    background-color: $color__pink;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    color: #fff;
+    .footer-container {
+        padding: 40px 20px;
+    }
+    p {
+        margin: 3px 0;
+    }
+    a {
+        padding: 8px 0;
+        transition: all .3s ease-in-out;
+        text-decoration: none;
+        color: #fff;
+    }
+    div.about-us, div.contact-us, div.policy-links {
+        @include flex-center-col-nowrap;
+        margin: 20px auto;
+        p.header {
+            font-weight: 700;
+            margin-bottom: 10px;
+            @include font-size(1.1);
+        }
+    }
+    .social-icons {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        max-width: 500px;
+        order: 1;
+        margin: 0 auto 20px;
+        a {
+            font-size: 30px;
+        }
+    }
+    .about-us {
+        order: 2;
+    }
+    .contact-us {
+        order: 3;
+    }
+    div.policy-links {
+        order: 4;
     }
 }

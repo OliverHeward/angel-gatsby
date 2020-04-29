@@ -5,6 +5,8 @@ import WorkSection from "../components/Homepage/WorkSection";
 import InAction from "../components/Homepage/InAction";
 import Story from "../components/Homepage/Story";
 import WhatWeDo from "../components/WhatWeDo";
+import BlogList from "../components/BlogList/BlogList";
+import LetsTalk from "../components/UI/LetsTalk";
 export default ({ pageContext }) => {
   // destructure from pageContext
   const { acf } = pageContext
@@ -24,6 +26,8 @@ export default ({ pageContext }) => {
       <InAction {...in_action} />
       <Story {...about_angel} />
       <WhatWeDo />
+      <BlogList />
+      <LetsTalk />
     </Layout>
   )
 }

@@ -39,7 +39,9 @@ To make a copy of the site, please follow the set up steps below.
 
     Within `gatsby-config.js` on `line 33` is the `gatsby-source-wordpress` plugin.
 
-    This plugin will control being able to scrap the Wordpress backend. Whilst running locally you need to ensure that `baseUrl` is pointing to a local Wordpress install url. On the line below, `protocol` will be either http or https, for local development you need to use http.
+    This plugin will control being able to expose and utilize the Wordpress API endpoint. Whilst running locally you need to ensure that `baseUrl` is pointing to a local Wordpress install url. 
+    
+    On the line below, `protocol` will be either http or https, for local development you need to use http.
 
 4.  **Gatsby Develop**
 5.  
