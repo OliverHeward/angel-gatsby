@@ -42,6 +42,7 @@ To make a copy of the site, please follow the set up steps below.
     This plugin will control being able to scrap the Wordpress backend. Whilst running locally you need to ensure that `baseUrl` is pointing to a local Wordpress install url. On the line below, `protocol` will be either http or https, for local development you need to use http.
 
 4.  **Gatsby Develop**
+5.  
     To run the application after following the previous steps, simply run the command below.
 
     ```shell
