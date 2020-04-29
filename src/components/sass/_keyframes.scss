@@ -1,0 +1,41 @@
+@keyframes open-nav {
+  0% {
+    border-radius: 50%;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    bottom: -60%;
+    right: -60%;
+    position: absolute;
+  }
+  100% {
+    -webkit-transform: scale(12);
+    transform: scale(12);
+  }
+}
+
+@keyframes close-nav {
+    0% {
+        -webkit-transform: scale(12);
+        transform: scale(12);
+      }
+      100% {
+        border-radius: 50%;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        bottom: -60%;
+        right: -60%;
+        position: absolute;
+      }
+}
+
+@keyframes menu-fade-in {
+    0% {
+        opacity: 0;
+    }
+    80% {
+        opactity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

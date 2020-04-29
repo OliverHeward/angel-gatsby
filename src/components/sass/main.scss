@@ -1,0 +1,269 @@
+// Overall App Stylesheet
+
+// === Import local SASS files ===
+@import './mixins';
+@import './keyframes';
+@import './variables';
+
+// === Import Google Fonts
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+
+// HTML BODY RESET
+html {
+    font-family: 'Montserrat', sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+img {
+    max-width: 100%;
+}
+
+h1 {
+	@include font-size(2);
+
+	@include tablet {
+		@include font-size(2.5);
+	}
+
+	@include desktop {
+		@include font-size(3);
+	}
+}
+// Button Menu Styling
+div.button-wrapper {
+    cursor: pointer;
+    background-color: #e6339a;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 10;
+    transition: all .5s ease-in-out;
+    div.burger-wrapper {
+        height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column nowrap;
+        position: relative;
+        div.burger-bar {
+            opacity: 1;
+            width: 40px;
+            height: 6px;
+            background-color: white;
+            z-index: 31; // +1 of backdrop
+            transition: all .3s ease;
+        }
+        div.burger-bar:first-child, div.burger-bar:last-child {
+            position: absolute;
+        }
+        div.burger-bar:first-child {
+            top: 21px;
+        }
+        div.burger-bar:last-child {
+            bottom: 21px;
+        }
+    }
+    // styling for open menu
+    &.open {
+        // @include flex-center;
+        div.burger-wrapper div.burger-bar:nth-child(2) {
+            opacity: 0;
+        }
+        div.burger-wrapper div.burger-bar:first-child {
+            top: 32px;
+            transform: rotate(45deg);
+        }
+        div.burger-wrapper div.burger-bar:last-child {
+            bottom: 32px;
+            transform: rotate(-45deg);
+        }
+        .menu-backdrop {
+            position: absolute;
+            z-index: 30;
+            border-radius: 50%;
+            background-color: #e6339a;
+            bottom: 10px;
+            right: 0px;
+            transform: scale(11);
+            width:400%;
+            height: 400%;
+            animation: open-nav .3s ease-in-out;
+        }
+        nav.nav-menu {
+            z-index: 31; //sit above backdrop
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: column nowrap;
+            text-align: left;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            margin-left: -25%;
+            height: 80%;
+            overflow: hidden;
+
+            ul.nav-list {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+
+                li {
+                    margin: 10px 0;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    height: 35px;
+                    animation: menu-fade-in .4s ease-in-out;
+                    .nav-menu-item {
+                        color: white;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+
+
+// ====== COMPONENTS ====== //
+.hero-container {
+    width: 100%;
+    position: relative;
+    height: 450px;
+    @include flex-center;
+    video {
+        max-width: 100%;
+        object-fit: cover;
+        height: inherit;
+    }
+    div.text-container {
+        position: absolute;
+        clear: both;
+        @include flex-center-col-nowrap;
+        top: 0;
+        width: 90%;
+        height: inherit;
+        // margin-top: -50px;
+        img.hero-svg {
+            max-width: 450px;
+            height: auto;
+            border: 0;
+        }
+        h1.small-text-lower {
+            text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+            z-index: 10;
+            max-width: calc(450px - 10%);
+            text-align: center;
+            letter-spacing: 3px;
+            margin: 20px auto 0;
+            color: #fff;
+            font-size: 1rem;
+        }
+    }
+}
+
+div.work-component {
+    margin-top: 30px;
+    padding: 30px 0;
+    width: 90%;
+    @include center-block;
+}
+
+div.angel-in-action {
+    margin-top: 30px;
+    @include flex-center-col-nowrap;
+    text-align: center;
+    div.text-container {
+        width: 90%;
+        @include center-block;
+        padding: 30px 0;
+    }
+
+    div.showreel-container {
+        margin: 20px auto 40px;
+        width: 100%;
+        @include flex-center;
+        flex-flow: row wrap;
+        .showreel-link {
+            width: 100%;
+            height: 175px;
+            margin: 5px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .showreel-wrapper {
+            width: 100%;
+            height: inherit;
+            background-size: cover;
+            background-position: 50%;
+            position: relative;
+            overflow: hidden;
+
+            h2 {
+                position: absolute;
+                bottom: 0;
+                left: 5%;
+                opacity: 1;
+                width: 70%;
+                font-size: 1.25rem;
+                text-align: left;
+            }
+        }
+    }
+}
+
+div.story-container {
+    @include center-block;
+    width: 90%;
+    margin-top: 100px;
+
+    div.text-container {
+        text-align: center;
+    }
+}
+
+div.what-we-do-container {
+    @include center-block;
+    width: 90%;
+    margin-bottom: 40px;
+    padding: 30px 0;
+    text-align: center;
+}
+
+div.grey-container {
+    background-color: #eee;
+    color: #000;
+    position: relative;
+    @include flex-center-col-nowrap;
+    padding: 40px 10%;
+    margin: 40px 0;
+    h3 {
+        margin: 0;
+        max-width: 950px;
+    }
+}
+
+// ===== UI COMPONENTS ===== //
+div.link-button {
+    @include center-block;
+    width: 175px;
+    height: 45px;
+    @include flex-center;
+    background: $color__pink;
+    border-radius: 25px;
+    .link {
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+    }
+}
