@@ -20,7 +20,8 @@ To make a copy of the site, please follow the set up steps below.
     If you have the gatsby cli installed you may skip this step.
 
     ```shell
-    # Thie above command installs Gatsby CLI globally on your machine
+    npm install -g gatsby-cli
+    # The above command installs Gatsby CLI globally on your machine
     ```
 
 2.  **Make sure you have Gatsby installed.**
