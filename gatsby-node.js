@@ -40,6 +40,12 @@ exports.createPages = ({ graphql, actions }) => {
               info
               legal_copy
               copy
+              company_logos {
+                logo {
+                  source_url
+                }
+                dummy
+              }
               methods {
                 title
                 methods_list {
@@ -104,10 +110,6 @@ exports.createPages = ({ graphql, actions }) => {
                     source_url
                   }
                 }
-                in_action {
-                  title
-                  text
-                }
                 about_angel {
                   title
                   text
@@ -139,7 +141,8 @@ exports.createPages = ({ graphql, actions }) => {
 
       const pageTemplate = path.resolve("./src/templates/page.js")
       const homepageTemplate = path.resolve("./src/templates/home.js")
-
+      const aboutTemplate = path.resolve("./src/templates/about-page.js")
+      const whatWeDoTemplate = path.resolve("./src/templates/what-we-do.js");
       _.each(result.data.allWordpressPage.edges, edge => {
         let edgeSwitch = edge.node.template
         // Set RESULT -> default template to /page.js
@@ -147,10 +150,16 @@ exports.createPages = ({ graphql, actions }) => {
         switch (edgeSwitch) {
           case "front-page.php":
             result = slash(homepageTemplate)
-            break
+            break;
+          case "page-about.php":
+            result = slash(aboutTemplate);
+            break;
+          case "page-how-we-work.php":
+            result = slash(whatWeDoTemplate);
+            break;
           default:
             result = slash(pageTemplate)
-            break
+            break;
         }
 
         createPage({

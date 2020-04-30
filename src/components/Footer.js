@@ -8,7 +8,7 @@ const Footer = () => {
         <SocialLinks />
         <div className="about-us">
           <p>
-            <span class="date-year"></span> Angel London.
+            <span className="date-year"></span> Angel London.
           </p>
           <p>All rights reservered.</p>
         </div>

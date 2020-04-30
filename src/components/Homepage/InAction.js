@@ -2,10 +2,23 @@ import React from "react"
 import LinkButton from "../UI/LinkButton"
 import useWordpressCaseStudy from "../../shared/hooks/get-case-studys"
 import { Link } from "gatsby"
+import useWordpressInAction from "../../shared/hooks/get-in-action"
 
-const InAction = (in_action) => {
-    const {title, text} = in_action;
-    const { edges } = useWordpressCaseStudy()
+const InAction = () => {
+  const {
+    edges: {
+      [0]: {
+        node: {
+          acf: {
+            page_content: {
+              in_action: {title, text}
+            },
+          },
+        },
+      },
+    },
+  } = useWordpressInAction()
+  const { edges } = useWordpressCaseStudy()
 
   return (
     <div className="angel-in-action">
@@ -16,7 +29,11 @@ const InAction = (in_action) => {
       </div>
       <div className="showreel-container">
         {edges.map(post => (
-          <Link to={post.node.path} key={post.node.id} className="showreel-link">
+          <Link
+            to={post.node.path}
+            key={post.node.id}
+            className="showreel-link"
+          >
             <div
               className="showreel-wrapper"
               style={{

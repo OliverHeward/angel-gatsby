@@ -25,7 +25,7 @@ const NavMenu = () => (
         <ul className="nav-list">
           {props.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(
             item => (
-              <li>
+              <li key={item.wordpress_id}>
                 <Link
                   className="nav-menu-item"
                   to={item.object_slug}
