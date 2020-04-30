@@ -50,7 +50,6 @@ exports.createPages = ({ graphql, actions }) => {
                 title
                 methods_list {
                   bold_word
-                  text
                 }
               }
               page_hero {
@@ -143,6 +142,7 @@ exports.createPages = ({ graphql, actions }) => {
       const homepageTemplate = path.resolve("./src/templates/home.js")
       const aboutTemplate = path.resolve("./src/templates/about-page.js")
       const whatWeDoTemplate = path.resolve("./src/templates/what-we-do.js");
+      const angelInAction = path.resolve("./src/templates/angel-in-action.js");
       _.each(result.data.allWordpressPage.edges, edge => {
         let edgeSwitch = edge.node.template
         // Set RESULT -> default template to /page.js
@@ -154,8 +154,11 @@ exports.createPages = ({ graphql, actions }) => {
           case "page-about.php":
             result = slash(aboutTemplate);
             break;
-          case "page-how-we-work.php":
+          case "page-what-we-do.php":
             result = slash(whatWeDoTemplate);
+            break;
+          case "archive-angel-in-action.php":
+            result = slash(angelInAction);
             break;
           default:
             result = slash(pageTemplate)
