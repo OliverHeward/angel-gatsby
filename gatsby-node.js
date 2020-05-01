@@ -24,114 +24,113 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     // ====== Pages (Wordpress Native) ======
     graphql(`
-    {
+      {
         allWordpressPage {
-        edges {
-          node {
-            id
-            title
-            slug
-            template
-            content
-            acf {
-              cta_text
-              page_title
-              hero_image
-              info
-              legal_copy
-              copy
-              company_logos {
-                logo {
+          edges {
+            node {
+              id
+              title
+              slug
+              template
+              content
+              acf {
+                cta_text
+                page_title
+                hero_image
+                info
+                legal_copy
+                copy
+                company_logos {
+                  logo {
+                    source_url
+                  }
+                  dummy
+                }
+                methods {
+                  title
+                  methods_list {
+                    bold_word
+                  }
+                }
+                page_hero {
+                  id
+                  title
                   source_url
                 }
-                dummy
-              }
-              methods {
                 title
-                methods_list {
-                  bold_word
+                subtitle
+                contact_info {
+                  text
+                  email
                 }
-              }
-              page_hero {
-                id
-                title
-                source_url
-              }
-                        title
-              subtitle
-              contact_info {
-                text
-                email
-              }
-              about_angel
-              angel_team
-              image {
-                source_url
-                id
-                title
-              }
-              hero_slider {
-                is_video
-                slide_content {
-                  svg_title
-                  slide_text_line_1
-                     slide_text_line_2
-                  slide_text_line_3
-                  upper_subtitle
-                  main_title
-                  lower_subtitle
-                  full_image {
-                    id
+                about_angel
+                angel_team
+                image {
+                  source_url
+                  id
+                  title
+                }
+                hero_slider {
+                  is_video
+                  slide_content {
+                    svg_title
+                    slide_text_line_1
+                    slide_text_line_2
+                    slide_text_line_3
+                    upper_subtitle
+                    main_title
+                    lower_subtitle
+                    full_image {
+                      id
+                      title
+                      source_url
+                    }
+                    mobile_image {
+                      id
+                      title
+                      source_url
+                    }
+                    slide_video {
+                      source_url
+                    }
+                    svg_headline_video {
+                      source_url
+                    }
+                  }
+                }
+                page_content {
+                  bio {
                     title
-                    source_url
+                    text
+                    gif_image {
+                      source_url
+                    }
+                    mp4_file {
+                      source_url
+                    }
                   }
-                  mobile_image {
-                    id
+                  about_angel {
                     title
-                    source_url
+                    text
+                    cta_text
+                    gif_image {
+                      source_url
+                    }
+                    mp4_file {
+                      source_url
+                    }
                   }
-                  slide_video {
-                    source_url
+                  sip {
+                    title
+                    text
+                    cta_text
                   }
-                  svg_headline_video {
-                    source_url
-                  }
-                }
-              }
-              page_content {
-                bio {
-                  title
-                  text
-                  gif_image {
-                    source_url
-                  }
-                  mp4_file {
-                    source_url
-                  }
-                }
-                about_angel {
-                  title
-                  text
-                  cta_text
-                  gif_image {
-                    source_url
-                  }
-                  mp4_file {
-                    source_url
-                  }
-                }
-                sip {
-                  title
-                  text
-                  cta_text
                 }
               }
             }
           }
         }
       }
-    }
-    
     `).then(result => {
       if (result.errors) {
         console.log(result.errors)
@@ -141,8 +140,8 @@ exports.createPages = ({ graphql, actions }) => {
       const pageTemplate = path.resolve("./src/templates/page.js")
       const homepageTemplate = path.resolve("./src/templates/home.js")
       const aboutTemplate = path.resolve("./src/templates/about-page.js")
-      const whatWeDoTemplate = path.resolve("./src/templates/what-we-do.js");
-      const angelInAction = path.resolve("./src/templates/angel-in-action.js");
+      const whatWeDoTemplate = path.resolve("./src/templates/what-we-do.js")
+      const angelInAction = path.resolve("./src/templates/angel-in-action.js")
       _.each(result.data.allWordpressPage.edges, edge => {
         let edgeSwitch = edge.node.template
         // Set RESULT -> default template to /page.js
@@ -150,19 +149,19 @@ exports.createPages = ({ graphql, actions }) => {
         switch (edgeSwitch) {
           case "front-page.php":
             result = slash(homepageTemplate)
-            break;
+            break
           case "page-about.php":
-            result = slash(aboutTemplate);
-            break;
+            result = slash(aboutTemplate)
+            break
           case "page-what-we-do.php":
-            result = slash(whatWeDoTemplate);
-            break;
+            result = slash(whatWeDoTemplate)
+            break
           case "archive-angel-in-action.php":
-            result = slash(angelInAction);
-            break;
+            result = slash(angelInAction)
+            break
           default:
             result = slash(pageTemplate)
-            break;
+            break
         }
 
         createPage({
@@ -173,5 +172,90 @@ exports.createPages = ({ graphql, actions }) => {
       })
       resolve()
     })
+    .then(() => {
+      graphql(
+        `
+        {
+          allWordpressPost {
+            edges {
+              node {
+                id
+                title
+                slug
+                modified
+                author {
+                  name
+                }
+                date
+                link
+                acf {
+                  insight_type
+                  pdf_post {
+                    title
+                    content
+                  }
+                  blog_post {
+                    image
+                    content
+                  }
+                  instagram {
+                    title
+                    photo_cover {
+                      source_url
+                    }
+                    link
+                  }
+                  music {
+                    song
+                    artist
+                    cover_photo {
+                      source_url
+                    }
+                    spotify_uri
+                  }
+                  notes {
+                    note_text
+                  }
+                }
+              }
+            }
+          }
+        }
+        
+        `
+      ).then(result => {
+        if (result.errors) {
+          console.log(result.errors)
+          reject(result.errors)
+        }
+        const posts = result.data.allWordpressPost.edges
+        const postsPerPage = 10
+        const numberOfPages = Math.ceil(posts.length / postsPerPage)
+        const blogTemplate = path.resolve('./src/templates/insightsList.js')
+
+        Array.from({length: numberOfPages}).forEach((page, index) => {
+          createPage({
+            component: slash(blogTemplate),
+            path: index === 0 ? '/insights/' : `/insights/${index + 1}`,
+            context: {
+              posts: posts.slice(index * postsPerPage, (index * postsPerPage) + postsPerPage), numberOfPages,
+              currentPage: index + 1
+            }
+          })
+        })
+        
+        // Post Template
+        const postTemplate = path.resolve("./src/templates/post.js")
+        _.each(posts, (post) => {
+          createPage({
+            path: `/insight/${post.node.slug}`,
+            component: slash(postTemplate),
+            context: post.node
+          })
+        })
+        resolve()
+      })
+    })
   })
+  
 }

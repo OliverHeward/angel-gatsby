@@ -1,33 +1,31 @@
 import React from "react"
-import useWordpressBlogList from "../../shared/hooks/get-blog-list"
 import WithImage from "./ListComponents/WithImage"
 import TextOnly from "./ListComponents/TextOnly"
 
-const BlogListItem = () => {
-  const { edges } = useWordpressBlogList()
+const BlogListItem = insights => {
   let result
   let blogArray = []
-  edges.map(edge => {
-    const type = edge.node.acf.insight_type
+  insights.insights.map(insight => {
+    const type = insight.node.acf.insight_type
     switch (type) {
       case "PDF Post":
-        edge.node.blog_title = "Read"
-        result = <TextOnly {...edge} />
+          insight.node.blog_title = "Read"
+        result = <TextOnly {...insight} />
         break
       case "Blog Post":
-        edge.node.blog_title = "Read"
-        result = <TextOnly {...edge} />
+          insight.node.blog_title = "Read"
+        result = <TextOnly {...insight} />
         break
       case "Music":
-        edge.node.blog_title = "Listen"
-        result = <WithImage {...edge} />
+          insight.node.blog_title = "Listen"
+        result = <WithImage {...insight} />
         break
       case "Instagram":
-        edge.node.blog_title = "For The Gram"
-        result = <WithImage {...edge} />
+          insight.node.blog_title = "For The Gram"
+        result = <WithImage {...insight} />
         break
       default:
-        result = <TextOnly {...edge} />
+        result = <TextOnly {...insight} />
         break
     }
     blogArray.push(result)

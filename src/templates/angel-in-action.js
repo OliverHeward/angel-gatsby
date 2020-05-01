@@ -2,6 +2,8 @@ import React, { useEffect } from "react"
 import Layout from "../components/layout"
 import ActionItem from "../components/AngelInAction/ActionItem"
 import { StaticQuery, graphql } from "gatsby"
+import WhatWeDo from "../components/WhatWeDo";
+import LetsTalk from "../components/UI/LetsTalk";
 
 export default ({ pageContext }) => {
   useEffect(() => {
@@ -22,6 +24,7 @@ export default ({ pageContext }) => {
                 node {
                   title
                   slug
+                  excerpt
                   acf {
                     subtitle
                     hero {
@@ -36,16 +39,20 @@ export default ({ pageContext }) => {
             }
           }
         `}
-        render={props =>
-          props.allWordpressWpAngelInAction.edges.map(item => (
+        render={props => (
+          <div className="action-wrapper">
+            {props.allWordpressWpAngelInAction.edges.map(item => (
             <ActionItem
               image={item.node.acf.hero.hero_image.source_url}
               title={item.node.title}
-              copy={item.node.acf.subtitle}
+              copy={item.node.excerpt}
             />
-          ))
-        }
+            ))}
+          </div>
+        )}
       />
+      <WhatWeDo />
+      <LetsTalk />
     </Layout>
   )
 }

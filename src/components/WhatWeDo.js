@@ -5,9 +5,11 @@ import LinkButton from "./UI/LinkButton"
 const WhatWeDo = () => {
   const { edges } = useWordpressTestimonial()
 
-  const result = edges.filter(edge => edge.node.title === "Ideas Testimonial")
+  const randomReview = edges[Math.floor(Math.random() * edges.length)]
 
-  const { acf } = result[0].node
+  // const result = edges.filter(edge => edge.node.title === "Ideas Testimonial")
+  // const { acf } = result[0].node
+  const { acf } = randomReview.node
 
   return (
     <div className="what-we-do-container">
