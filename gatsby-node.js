@@ -142,6 +142,7 @@ exports.createPages = ({ graphql, actions }) => {
       const aboutTemplate = path.resolve("./src/templates/about-page.js")
       const whatWeDoTemplate = path.resolve("./src/templates/what-we-do.js")
       const angelInAction = path.resolve("./src/templates/angel-in-action.js")
+      const contactPage = path.resolve("./src/templates/contact.js")
       _.each(result.data.allWordpressPage.edges, edge => {
         let edgeSwitch = edge.node.template
         // Set RESULT -> default template to /page.js
@@ -159,6 +160,9 @@ exports.createPages = ({ graphql, actions }) => {
           case "archive-angel-in-action.php":
             result = slash(angelInAction)
             break
+            case "page-contact.php":
+            result = slash(contactPage);
+            break;
           default:
             result = slash(pageTemplate)
             break
