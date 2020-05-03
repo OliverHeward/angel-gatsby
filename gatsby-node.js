@@ -246,10 +246,21 @@ exports.createPages = ({ graphql, actions }) => {
         
         // Post Template
         const postTemplate = path.resolve("./src/templates/post.js")
+        const pdfTemplate = path.resolve("./src/templates/post-pdf.js")
         _.each(posts, (post) => {
+          let postSwitch = post.node.acf.insight_type
+          let postResult = slash(postTemplate)
+          switch(postSwitch) {
+            case 'PDF Post':
+              postResult = slash(pdfTemplate)
+              break;
+            default:
+              postResult = slash(postTemplate);
+              break;
+          }
           createPage({
             path: `/insight/${post.node.slug}`,
-            component: slash(postTemplate),
+            component: slash(postResult),
             context: post.node
           })
         })

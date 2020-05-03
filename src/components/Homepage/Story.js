@@ -4,7 +4,7 @@ import LinkButton from '../UI/LinkButton';
 
 const Story = (about_angel) => {
     // Destruct from props obj
-    const {title, text, cta_text, gif_image, mp4_file} = about_angel;
+    const {title, text, cta_text, mp4_file} = about_angel;
     return (
         <div className="story-container">
             <img src={mp4_file.source_url} className="story_image" />

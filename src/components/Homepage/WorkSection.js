@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 
 const WorkSection = ({title, text, gif_image, mp4_file}) => {
   return (

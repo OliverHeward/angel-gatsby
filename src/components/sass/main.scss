@@ -31,6 +31,12 @@ h1 {
     @include font-size(3);
   }
 }
+// unset link decorations
+a {
+  text-decoration: unset;
+  color: unset;
+
+}
 // Button Menu Styling
 div.button-wrapper {
   cursor: pointer;
@@ -354,6 +360,41 @@ div.grey-container {
   }
 }
 
+.pdf-blog-hero {
+  padding: 30px 0;
+  position: relative;
+  @include flex-center;
+  @include center-block;
+  width: 90%;
+  text-align: center;
+  h1 {
+    max-width: 500px;
+    margin: 35px auto;
+  }
+}
+
+.share-container {
+  font-weight: 700;
+  @include center-block;
+  width: 90%;
+  padding: 30px 0;
+  max-width: 1180px;
+  @include font-size(1.25);
+  h1.share-title {
+    margin-right: 10px; 
+    margin: 0;
+  }
+  button {
+    margin: 5px 10px 5px 0px;
+    color: $color__pink !important;
+  }
+}
+
+div.blog-content-wrapper {
+  width: 90%;
+  @include center-block;
+  @include flex-center-col-nowrap;
+}
 // ===== UI COMPONENTS ===== //
 div.link-button {
   @include center-block;
