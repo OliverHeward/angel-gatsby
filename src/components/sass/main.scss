@@ -35,7 +35,6 @@ h1 {
 a {
   text-decoration: unset;
   color: unset;
-
 }
 // Button Menu Styling
 div.button-wrapper {
@@ -143,7 +142,8 @@ div.layout > div.text-container {
   margin: 0 auto;
   h1 {
     @include font-size(2.5);
-    &, .copy {
+    &,
+    .copy {
       max-width: 80%;
     }
   }
@@ -157,6 +157,7 @@ div.layout > div.text-container {
   padding: 0;
   z-index: 2;
   svg {
+    z-index: -1;
     background-attachment: fixed;
     right: 0;
     top: 0;
@@ -381,7 +382,7 @@ div.grey-container {
   max-width: 1180px;
   @include font-size(1.25);
   h1.share-title {
-    margin-right: 10px; 
+    margin-right: 10px;
     margin: 0;
   }
   button {
@@ -394,6 +395,36 @@ div.blog-content-wrapper {
   width: 90%;
   @include center-block;
   @include flex-center-col-nowrap;
+  a {
+    color: $color__pink;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  ol, ul {
+    margin: 0;
+    padding: 0;
+    margin-left: 15px;
+    list-style: none;
+    li {
+      padding: 5px;
+      counter-increment: a;
+      &:before {
+        content: counter(a) ". ";
+        color: $color__pink;
+        display: inline-block;
+        font-weight: 700;
+        width: 1em;
+        margin-left: -1.5em;
+        margin-right: .5em;
+        text-align: right;
+      }
+      // Remove numerics from lists within lists
+      & ul li:before {
+        counter-reset: unset;
+        content: "";
+      }
+    }
+  }
 }
 // ===== UI COMPONENTS ===== //
 div.link-button {
@@ -403,6 +434,12 @@ div.link-button {
   @include flex-center;
   background: $color__pink;
   border-radius: 25px;
+  &.blue {
+    background: $color__blue;
+    .link {
+      color: #000;
+    }
+  }
   .link {
     text-decoration: none;
     font-weight: bold;
@@ -456,7 +493,7 @@ div.team-grid {
       text-align: left;
       width: 100%;
       h2.team-title {
-          margin: 0;
+        margin: 0;
       }
     }
   }
@@ -513,10 +550,161 @@ div.action-wrapper {
       width: 90%;
       h3.action-title {
         @include font-size(2);
-        &, p {
+        &,
+        p {
           margin: 20px 0;
         }
       }
+    }
+  }
+}
+
+div.backdrop {
+  overflow: scroll;
+
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 9;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+div.modal {
+  height: calc(100vh - 10%);
+  position: fixed;
+  z-index: 10;
+  background-color: $color__pink;
+  width: 90%;
+  @include center-block;
+  box-shadow: 0px 1px 8px 0px #000;
+  padding: 20px 10px 30px;
+  left: 5%;
+  top: 5%;
+  box-sizing: border-box;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  overflow: scroll;
+}
+
+form.pdf-form {
+  max-width: 350px;
+  @include center-block;
+  color: white;
+  img.form-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+  }
+  p.form-copy {
+    @include center-block;
+    max-width: 400px;
+    width: 80%;
+    text-align: center;
+  }
+
+  .cb-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    padding-left: 35px;
+    margin: 12px auto 24px 0;
+    font-size: .7rem;
+    height: 25px;
+    color: #fff;
+
+    &:hover input ~ .checkmark {
+      background-color: #fff;
+    }
+    & input:checked ~ .checkmark {
+      background-color: $color__blue;
+    }
+
+    & input:checked ~ .checkmark:after {
+      display: block;
+    }
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    span.checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #fff;
+
+      &:after {
+        content: '';
+        position: absolute;
+        display: none;
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid #3b3b3b;
+        border-width: 0 3px 3px 0;
+        -webit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+    }
+  }
+  p.small-copy {
+    font-size: .7rem;
+  }
+}
+
+// Inputs
+.input-group {
+  position: relative;
+  margin: 20px 0;
+  width: 100%;
+
+  input,
+  textarea {
+    &::placeholder {
+      display: none !important;
+    }
+    background: none;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: -webkit-fill-available;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #fff;
+
+    &:focus {
+      outline: none;
+    }
+    &:focus:not([type="checkbox"]) ~ .form-input-label {
+      top: -14px;
+      font-size: 12px;
+      color: #fff;
+    }
+  }
+
+  label {
+    color: #fff;
+    font-size: 16px;
+    font-weight: normal;
+    pointer-events: none;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+    transition: 300ms ease all;
+    &.shrink {
+      top: -14px;
+      font-size: 12px;
     }
   }
 }

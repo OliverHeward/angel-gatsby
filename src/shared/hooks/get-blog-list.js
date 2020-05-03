@@ -22,7 +22,9 @@ const useWordpressBlogList = () => {
                 content
               }
               blog_post {
-                image
+                image {
+                  source_url
+                }
                 content
               }
               instagram {

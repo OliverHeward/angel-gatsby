@@ -195,7 +195,9 @@ exports.createPages = ({ graphql, actions }) => {
                     content
                   }
                   blog_post {
-                    image
+                    image {
+                      source_url
+                    }
                     content
                   }
                   instagram {
