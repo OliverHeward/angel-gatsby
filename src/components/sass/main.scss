@@ -2,8 +2,8 @@
 
 // === Import local SASS files ===
 @import "./mixins";
-@import "./keyframes";
 @import "./variables";
+@import "./keyframes";
 
 // === Import Google Fonts
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
@@ -24,6 +24,13 @@ img {
   max-width: 100%;
 }
 
+// reset ul
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+// Fonts
 h1 {
   @include font-size(2);
 
@@ -35,13 +42,19 @@ h1 {
     @include font-size(3);
   }
 }
+
+@include tablet {
+  p {
+    @include font-size(1.25);
+  }
+}
 // unset link decorations
 a {
   text-decoration: unset;
   color: unset;
 }
 
-// Header 
+// Header
 header {
   position: fixed;
   z-index: 1000;
@@ -54,7 +67,7 @@ header {
   }
 }
 
-// Darkmode 
+// Darkmode
 div.dark-holder {
   position: fixed;
   bottom: 10px;
@@ -65,7 +78,7 @@ div.dark-holder {
     width: unset;
     font-size: 60px;
     height: 60px;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     &.light {
       fill: #fff;
     }
@@ -111,6 +124,9 @@ div.button-wrapper {
     div.burger-bar:last-child {
       bottom: 21px;
     }
+  }
+  nav.nav-menu {
+    display: none;
   }
   // styling for open menu
   &.open {
@@ -260,11 +276,62 @@ a.map-wrapper {
   }
 }
 
+// Angel In Action - Single Page
+div.quote-box {
+  padding: 15px 0px;
+  width: 90%;
+  @include center-block;
+  max-width: 1180px;
+  position: relative;
+  h2.quote {
+    text-align: left;
+    @include font-size(1.2);
+  }
+  &:before,
+  &:after {
+    display: block;
+    z-index: 10;
+    content: "";
+    background-image: url("../../static/quotes.svg"); // add quotes svg here
+    position: absolute;
+    width: 65px;
+    height: 65px;
+  }
+  &:before {
+    top: 0;
+    transform: scaleX(-1);
+  }
+  &:after {
+    bottom: 0;
+    right: 5%;
+    transform: scaleX(1) rotate(180deg);
+  }
+}
+div.project-container {
+  div.project-video {
+    max-width: 750px;
+    @include flex-center;
+    flex-flow: column nowrap;
+    @include center-block;
+
+    video.silent-video {
+      max-width: 750px;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+  }
+}
+
 // ====== COMPONENTS ====== //
-.hero-container {
+div.hero-container {
   width: 100%;
   position: relative;
   height: 450px;
+  @include tablet {
+    width: 100%;
+    height: 100vh;
+  }
   @include flex-center;
   video {
     max-width: 100%;
@@ -283,6 +350,9 @@ a.map-wrapper {
       max-width: 450px;
       height: auto;
       border: 0;
+      @include tablet {
+        max-width: 500px;
+      }
     }
     h1.small-text-lower {
       text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
@@ -292,16 +362,32 @@ a.map-wrapper {
       letter-spacing: 3px;
       margin: 20px auto 0;
       color: #fff;
-      font-size: 1rem;
+      @include font-size(1);
+      @include tablet {
+        max-width: 550px;
+        @include font-size(1.4);
+      }
     }
   }
 }
 
 div.work-component {
-  margin-top: 30px;
   padding: 30px 0;
   width: 90%;
-  @include center-block;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include tablet {
+    p {
+      max-width: 550px;
+    }
+  }
+
+  img {
+    display: flex;
+    margin-left: auto;
+    margin-top: 5px;
+  }
 }
 
 div.angel-in-action {
@@ -325,6 +411,23 @@ div.angel-in-action {
       margin: 5px;
       color: #fff;
       text-decoration: none;
+      opacity: 0;
+      transform: translateX(0%);
+      @include tablet {
+        width: 45%;
+        height: 300px;
+      }
+      &:nth-of-type(2n) {
+        transform: translateX(0%);
+      }
+      &.fade-in-mobile {
+        animation: fade-in-left 0.6s 1;
+        animation-fill-mode: forwards;
+      }
+      &.fade-in-mobile:nth-of-type(2n) {
+        animation: fade-in-right 0.6s 1;
+        animation-fill-mode: forwards;
+      }
     }
 
     .showreel-wrapper {
@@ -334,7 +437,7 @@ div.angel-in-action {
       background-position: 50%;
       position: relative;
       overflow: hidden;
-
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       h2 {
         position: absolute;
         bottom: 0;
@@ -343,6 +446,9 @@ div.angel-in-action {
         width: 70%;
         font-size: 1.25rem;
         text-align: left;
+        @include tablet {
+          @include font-size(1.75);
+        }
       }
     }
   }
@@ -352,9 +458,30 @@ div.story-container {
   @include center-block;
   width: 90%;
   margin-top: 100px;
-
+  @include flex-center-col-nowrap;
+  img {
+    z-index: 2;
+    @include tablet {
+      height: 550px;
+      max-width: 700px;
+    }
+  }
   div.text-container {
     text-align: center;
+    opacity: 0;
+    z-index: 1;
+    max-width: 750px;
+    @include center-block;
+    @include tablet {
+      p {
+        max-width: 550px;
+        @include center-block;
+      }
+    }
+    &.fade-down {
+      animation: fade-down 0.5s ease-in-out;
+      animation-fill-mode: forwards;
+    }
   }
 }
 
@@ -364,6 +491,12 @@ div.what-we-do-container {
   margin-bottom: 40px;
   padding: 30px 0;
   text-align: center;
+  @include tablet {
+    p {
+      max-width: 400px;
+      @include center-block;
+    }
+  }
 }
 
 div.grey-container {
@@ -376,46 +509,72 @@ div.grey-container {
   h3 {
     margin: 0;
     max-width: 950px;
+    @include tablet {
+      @include font-size(1.8);
+    }
   }
 }
 
-// Blog List Components
-.insight-wrapper {
-  height: auto;
+div.blog-list-section {
   width: 90%;
-  margin: 30px auto;
-  &.blog-post {
-    .insight-title {
-      margin-top: 0;
-    }
+  @include center-block;
+}
+// Blog List Components
+div.blog-list-wrapper {
+  @include flex-center-col-nowrap;
+  @include tablet {
+    flex-flow: row wrap;
   }
-  h3.insight-type {
-    text-transform: capitalize;
-    color: #000;
-    @include font-size(1.75);
-    margin: 0;
-  }
-  img {
-    width: 100%;
+  a {
     height: 100%;
-    position: relative;
-    margin: 10px 0;
-  }
-  div.text-container {
-    padding: 10px 0;
-    p.blog-content {
-      font-weight: 400;
-      @include font-size(1.2);
+    width: 90%;
+    opacity: 0;
+    
+    &.fade-up {
+      animation: fade-up-blog 0.5s 1 cubic-bezier(0.46, 0.03, 0.52, 0.96);
+      animation-fill-mode: forwards;
     }
-    span {
-      color: $color__pink;
-      &.byline {
-        display: inline;
+    @include tablet {
+      width: 50%;
+    }
+    .insight-wrapper {
+      height: auto;
+      width: 90%;
+      margin: 30px auto;
+      &.blog-post {
+        .insight-title {
+          margin-top: 0;
+        }
       }
-    }
-    span.posted-on {
-      display: block;
-      margin-top: 20px;
+      h3.insight-type {
+        text-transform: capitalize;
+        color: #000;
+        @include font-size(1.75);
+        margin: 0;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        margin: 10px 0;
+      }
+      div.text-container {
+        padding: 10px 0;
+        p.blog-content {
+          font-weight: 400;
+          @include font-size(1.2);
+        }
+        span {
+          color: $color__pink;
+          &.byline {
+            display: inline;
+          }
+        }
+        span.posted-on {
+          display: block;
+          margin-top: 20px;
+        }
+      }
     }
   }
 }
@@ -459,7 +618,8 @@ div.blog-content-wrapper {
     font-weight: 700;
     cursor: pointer;
   }
-  ol, ul {
+  ol,
+  ul {
     margin: 0;
     padding: 0;
     margin-left: 15px;
@@ -474,7 +634,7 @@ div.blog-content-wrapper {
         font-weight: 700;
         width: 1em;
         margin-left: -1.5em;
-        margin-right: .5em;
+        margin-right: 0.5em;
         text-align: right;
       }
       // Remove numerics from lists within lists
@@ -516,7 +676,7 @@ div.lets-talk {
     margin: 0 auto;
     a {
       color: #000;
-      cursour: pointer;
+      cursor: pointer;
       text-decoration: none;
     }
   }
@@ -551,6 +711,10 @@ div.team-grid {
       margin-top: 20px;
       text-align: left;
       width: 100%;
+      &.fade-down {
+        animation: fade-down 0.5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
       h2.team-title {
         margin: 0;
       }
@@ -671,7 +835,7 @@ form.pdf-form {
     user-select: none;
     padding-left: 35px;
     margin: 12px auto 24px 0;
-    font-size: .7rem;
+    font-size: 0.7rem;
     height: 25px;
     color: #fff;
 
@@ -702,7 +866,7 @@ form.pdf-form {
       background-color: #fff;
 
       &:after {
-        content: '';
+        content: "";
         position: absolute;
         display: none;
         left: 9px;
@@ -717,7 +881,7 @@ form.pdf-form {
     }
   }
   p.small-copy {
-    font-size: .7rem;
+    font-size: 0.7rem;
   }
 }
 
@@ -821,7 +985,5 @@ footer.site-footer {
   }
 }
 
-
-
 // Import Darkmode stylesheet
-@import './darkmode';
+@import "./darkmode";

@@ -5,6 +5,7 @@ import LinkButton from "./UI/LinkButton"
 const WhatWeDo = () => {
   const { edges } = useWordpressTestimonial()
 
+  // Take a random edge from the static query hook
   const randomReview = edges[Math.floor(Math.random() * edges.length)]
 
   // const result = edges.filter(edge => edge.node.title === "Ideas Testimonial")

@@ -31,7 +31,7 @@ const BlogListItem = insights => {
     blogArray.push(result)
   })
   return (
-    <div>
+    <div className="blog-list-wrapper">
       {blogArray}
     </div>
   )

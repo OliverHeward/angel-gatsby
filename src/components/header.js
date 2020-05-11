@@ -1,13 +1,19 @@
-
 import PropTypes from "prop-types"
 import React, { useEffect } from "react"
+import { Link } from "gatsby"
 
 const Header = ({ siteTitle, theme }) => {
-  console.log(theme);
+  console.log(theme)
   return (
-  <header>
-    <img src={`https://angellondon.co.uk/wp-content/themes/angel-starter-master/assets/svgs/angel-circle-${theme}.svg`} className="angel-logo" alt="Angel Logo" />
-  </header>
+    <header>
+      <Link to="/home">
+        <img
+          src={`https://angellondon.co.uk/wp-content/themes/angel-starter-master/assets/svgs/angel-circle-${theme}.svg`}
+          className="angel-logo"
+          alt="Angel Logo"
+        />
+      </Link>
+    </header>
   )
 }
 

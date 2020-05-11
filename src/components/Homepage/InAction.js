@@ -1,17 +1,22 @@
-import React from "react"
+import React, { useRef } from "react"
 import LinkButton from "../UI/LinkButton"
 import useWordpressCaseStudy from "../../shared/hooks/get-case-studys"
 import { Link } from "gatsby"
 import useWordpressInAction from "../../shared/hooks/get-in-action"
+import { useOnScreen } from "../../shared/hooks/useOnScreen"
 
-const InAction = () => {
+const InAction = () => {  
+  // Create reference to object
+  const ref = useRef()
+  const onScreen = useOnScreen(ref, "0px", 0)
+
   const {
     edges: {
       [0]: {
         node: {
           acf: {
             page_content: {
-              in_action: {title, text}
+              in_action: { title, text },
             },
           },
         },
@@ -27,15 +32,15 @@ const InAction = () => {
         <p>{text}</p>
         <LinkButton>See more</LinkButton>
       </div>
-      <div className="showreel-container">
+      <div className="showreel-container" ref={ref}>
         {edges.map(post => (
           <Link
             to={post.node.path}
             key={post.node.id}
-            className="showreel-link"
+            className={`showreel-link ${onScreen ? "fade-in-mobile" : ""}`}
           >
             <div
-              className="showreel-wrapper"
+              className={`showreel-wrapper ${onScreen ? "fade-in-mobile" : ""}`}
               style={{
                 backgroundImage: `url(${post.node.acf.hero.hero_image.source_url})`,
               }}

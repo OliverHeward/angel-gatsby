@@ -131,148 +131,220 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-    `).then(result => {
-      if (result.errors) {
-        console.log(result.errors)
-        reject(result.errors)
-      }
-
-      const pageTemplate = path.resolve("./src/templates/page.js")
-      const homepageTemplate = path.resolve("./src/templates/home.js")
-      const aboutTemplate = path.resolve("./src/templates/about-page.js")
-      const whatWeDoTemplate = path.resolve("./src/templates/what-we-do.js")
-      const angelInAction = path.resolve("./src/templates/angel-in-action.js")
-      const contactPage = path.resolve("./src/templates/contact.js")
-      _.each(result.data.allWordpressPage.edges, edge => {
-        let edgeSwitch = edge.node.template
-        // Set RESULT -> default template to /page.js
-        let result = slash(pageTemplate)
-        switch (edgeSwitch) {
-          case "front-page.php":
-            result = slash(homepageTemplate)
-            break
-          case "page-about.php":
-            result = slash(aboutTemplate)
-            break
-          case "page-what-we-do.php":
-            result = slash(whatWeDoTemplate)
-            break
-          case "archive-angel-in-action.php":
-            result = slash(angelInAction)
-            break
-            case "page-contact.php":
-            result = slash(contactPage);
-            break;
-          default:
-            result = slash(pageTemplate)
-            break
-        }
-
-        createPage({
-          path: `/${edge.node.slug}/`,
-          component: result,
-          context: edge.node,
-        })
-      })
-      resolve()
-    })
-    .then(() => {
-      graphql(
-        `
-        {
-          allWordpressPost {
-            edges {
-              node {
-                id
-                title
-                slug
-                modified
-                author {
-                  name
-                }
-                date
-                link
-                acf {
-                  insight_type
-                  pdf_post {
-                    title
-                    content
-                  }
-                  blog_post {
-                    image {
-                      source_url
-                    }
-                    content
-                  }
-                  instagram {
-                    title
-                    photo_cover {
-                      source_url
-                    }
-                    link
-                  }
-                  music {
-                    song
-                    artist
-                    cover_photo {
-                      source_url
-                    }
-                    spotify_uri
-                  }
-                  notes {
-                    note_text
-                  }
-                }
-              }
-            }
-          }
-        }
-        
-        `
-      ).then(result => {
+    `)
+      .then(result => {
         if (result.errors) {
           console.log(result.errors)
           reject(result.errors)
         }
-        const posts = result.data.allWordpressPost.edges
-        const postsPerPage = 10
-        const numberOfPages = Math.ceil(posts.length / postsPerPage)
-        const blogTemplate = path.resolve('./src/templates/insightsList.js')
 
-        Array.from({length: numberOfPages}).forEach((page, index) => {
-          createPage({
-            component: slash(blogTemplate),
-            path: index === 0 ? '/insights/' : `/insights/${index + 1}`,
-            context: {
-              posts: posts.slice(index * postsPerPage, (index * postsPerPage) + postsPerPage), numberOfPages,
-              currentPage: index + 1
-            }
-          })
-        })
-        
-        // Post Template
-        const postTemplate = path.resolve("./src/templates/post.js")
-        const pdfTemplate = path.resolve("./src/templates/post-pdf.js")
-        _.each(posts, (post) => {
-          let postSwitch = post.node.acf.insight_type
-          let postResult = slash(postTemplate)
-          switch(postSwitch) {
-            case 'PDF Post':
-              postResult = slash(pdfTemplate)
-              break;
+        const pageTemplate = path.resolve("./src/templates/page.js")
+        const homepageTemplate = path.resolve("./src/templates/home.js")
+        const aboutTemplate = path.resolve("./src/templates/about-page.js")
+        const whatWeDoTemplate = path.resolve("./src/templates/what-we-do.js")
+        const angelInAction = path.resolve("./src/templates/angel-in-action.js")
+        const contactPage = path.resolve("./src/templates/contact.js")
+        _.each(result.data.allWordpressPage.edges, edge => {
+          let edgeSwitch = edge.node.template
+          // Set RESULT -> default template to /page.js
+          let result = slash(pageTemplate)
+          switch (edgeSwitch) {
+            case "front-page.php":
+              result = slash(homepageTemplate)
+              break
+            case "page-about.php":
+              result = slash(aboutTemplate)
+              break
+            case "page-what-we-do.php":
+              result = slash(whatWeDoTemplate)
+              break
+            case "archive-angel-in-action.php":
+              result = slash(angelInAction)
+              break
+            case "page-contact.php":
+              result = slash(contactPage)
+              break
             default:
-              postResult = slash(postTemplate);
-              break;
+              result = slash(pageTemplate)
+              break
           }
+
           createPage({
-            path: `/insight/${post.node.slug}`,
-            component: slash(postResult),
-            context: post.node
+            path: `/${edge.node.slug}/`,
+            component: result,
+            context: edge.node,
           })
         })
         resolve()
       })
-    })
+
+      .then(() => {
+        graphql(
+          `
+            {
+              allWordpressWpAngelInAction {
+                edges {
+                  node {
+                    title
+                    slug
+                    excerpt
+                    acf {
+                      quotes {
+                        quote_one
+                        quote_two
+                        quote_third
+                      }
+                      subtitle
+                      hero {
+                        hero_image {
+                          title
+                          source_url
+                        }
+                      }
+                      image_section_one {
+                        image {
+                          source_url
+                        }
+                      }
+                      text_section_one
+                      project_group {
+                        project_choice {
+                          value
+                          label
+                        }
+                        project_text
+                        project_video {
+                          source_url
+                        }
+                      }
+                      text_section_two
+                    }
+                  }
+                }
+              }
+            }
+          `
+        ).then(result => {
+          if (result.error) {
+            console.log(result.errors)
+            reject(result.errors)
+          }
+          const angelInAction = path.resolve(
+            "./src/templates/angel-in-action-single.js"
+          )
+          // Create a detailed page for each post node
+          // Using the Wordpress slug for the slug
+          _.each(result.data.allWordpressWpAngelInAction.edges, edge => {
+            createPage({
+              path: `/angel-in-action/${edge.node.slug}/`,
+              component: slash(angelInAction),
+              context: edge.node,
+            })
+          })
+          resolve()
+        })
+      })
+      // ==== End -> Angel In Action Single Post Type ====
+      // ==== Posts (Wordpress Native and ACF) ====
+      .then(() => {
+        graphql(
+          `
+            {
+              allWordpressPost {
+                edges {
+                  node {
+                    id
+                    title
+                    slug
+                    modified
+                    author {
+                      name
+                    }
+                    date
+                    link
+                    acf {
+                      insight_type
+                      pdf_post {
+                        title
+                        content
+                      }
+                      blog_post {
+                        image {
+                          source_url
+                        }
+                        content
+                      }
+                      instagram {
+                        title
+                        photo_cover {
+                          source_url
+                        }
+                        link
+                      }
+                      music {
+                        song
+                        artist
+                        cover_photo {
+                          source_url
+                        }
+                        spotify_uri
+                      }
+                      notes {
+                        note_text
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          `
+        ).then(result => {
+          if (result.errors) {
+            console.log(result.errors)
+            reject(result.errors)
+          }
+          const posts = result.data.allWordpressPost.edges
+          const postsPerPage = 10
+          const numberOfPages = Math.ceil(posts.length / postsPerPage)
+          const blogTemplate = path.resolve("./src/templates/insightsList.js")
+
+          Array.from({ length: numberOfPages }).forEach((page, index) => {
+            createPage({
+              component: slash(blogTemplate),
+              path: index === 0 ? "/insights/" : `/insights/${index + 1}`,
+              context: {
+                posts: posts.slice(
+                  index * postsPerPage,
+                  index * postsPerPage + postsPerPage
+                ),
+                numberOfPages,
+                currentPage: index + 1,
+              },
+            })
+          })
+
+          // Post Template
+          const postTemplate = path.resolve("./src/templates/post.js")
+          const pdfTemplate = path.resolve("./src/templates/post-pdf.js")
+          _.each(posts, post => {
+            let postSwitch = post.node.acf.insight_type
+            let postResult = slash(postTemplate)
+            switch (postSwitch) {
+              case "PDF Post":
+                postResult = slash(pdfTemplate)
+                break
+              default:
+                postResult = slash(postTemplate)
+                break
+            }
+            createPage({
+              path: `/insight/${post.node.slug}`,
+              component: slash(postResult),
+              context: post.node,
+            })
+          })
+          resolve()
+        })
+      })
   })
-  
 }
