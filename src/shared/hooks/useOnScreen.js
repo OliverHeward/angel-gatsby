@@ -20,7 +20,9 @@ export const useOnScreen = (ref, rootMargin = "0px", threshold = 1.0) => {
         }
         return () => {
             // console.log('unmounted')
-            observer.unobserve(ref.current)
+            if(ref.current) {
+                observer.unobserve(ref.current)
+            }
         };
     }, []) // Empty array ensures that the effect is only run on mount and unmount
 

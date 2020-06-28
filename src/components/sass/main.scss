@@ -39,7 +39,7 @@ h1 {
   }
 
   @include desktop {
-    @include font-size(3);
+    @include font-size(4);
   }
 }
 
@@ -52,6 +52,15 @@ h1 {
 a {
   text-decoration: unset;
   color: unset;
+}
+
+.content-width {
+  box-sizing: border-box;
+  @include desktop {
+    @include center-block;
+    width: 90%;
+    max-width: 1180px;
+  } 
 }
 
 // Header
@@ -203,14 +212,14 @@ div.layout > div.text-container {
   }
 }
 
-//====== About Page ====== //
+//====== Hero Element ====== //
 .hero {
   min-height: 150px;
   height: 240px;
   width: 100%;
   padding: 0;
   z-index: 2;
-  svg {
+  svg#zigzag-hero {
     z-index: -1;
     background-attachment: fixed;
     right: 0;
@@ -223,35 +232,87 @@ div.layout > div.text-container {
     background-size: contain;
     background-position: 100% -20px;
   }
-  .hero-zigzag {
+  svg.hero-circle {
+    z-index: -1;
+    background-attachment: fixed;
+    right: 0;
+    top: 0;
+    position: absolute;
+    width: 140%;
+    max-width: 1100px;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 100% 0;
+  }
+  .hero-zigzag,
+  .hero-circle {
     fill: #fff;
+  }
+  @include tablet {
+    height: 400px;
+    svg.hero-zigzag {
+      background-position: 100% -50px;
+    }
+    svg.hero-circle {
+      background-position: 100% 100%;
+    }
+  }
+  @include desktop {
+    height: 500px;
+    svg {
+      width: 100%;
+      background-size: 70%;
+      background-position: 100% -80px;
+    }
   }
 }
 
 .hero-content {
-  margin-top: -50px;
   z-index: 5;
   position: relative;
   width: 90%;
   @include center-block;
-  max-width: 1180px;
   p.copy {
     max-width: 750px;
     margin-left: 0;
+  }
+  @include desktop {
+    h1 {
+      max-width: 750px;
+      @include font-size(3.4);
+    }
+  }
+  &.what-we-do {
+    @include tablet {
+      max-width: 450px;
+      margin-left: 50px;
+    }
   }
 }
 
 div.clients-container {
   padding: 20px 0 30px;
   margin: 30px 0;
-  max-width: 1200px;
-  @include center-block;
   @include flex-center;
   flex-flow: row wrap;
+  @include center-block;
+  @include tablet {
+    margin: 40px auto;
+  }
+  @include desktop {
+    margin: 60px auto;
+  }
   .client {
     width: 27%;
     height: 75px;
     margin: 10px;
+    @include tablet {
+      width: 20%;
+    }
+    @include desktop {
+      width: 14%;
+    }
   }
 }
 
@@ -337,6 +398,9 @@ div.hero-container {
     max-width: 100%;
     object-fit: cover;
     height: inherit;
+    @include desktop {
+      width: 100vw;
+    }
   }
   div.text-container {
     position: absolute;
@@ -376,17 +440,26 @@ div.work-component {
   width: 90%;
   margin-right: auto;
   margin-left: auto;
-
+  img {
+    display: flex;
+    margin-left: auto;
+    margin-top: 5px;
+  }
   @include tablet {
     p {
       max-width: 550px;
     }
   }
-
-  img {
-    display: flex;
-    margin-left: auto;
-    margin-top: 5px;
+  @include desktop {
+    h1 {
+      max-width: 1000px;
+    }
+    p {
+      max-width: 400px;
+    }
+    img {
+      margin-top: -160px;
+    }
   }
 }
 
@@ -398,6 +471,12 @@ div.angel-in-action {
     width: 90%;
     @include center-block;
     padding: 30px 0;
+    @include desktop {
+      p {
+        max-width: 550px;
+        @include center-block;
+      }
+    }
   }
 
   div.showreel-container {
@@ -405,17 +484,25 @@ div.angel-in-action {
     width: 100%;
     @include flex-center;
     flex-flow: row wrap;
+    @include desktop {
+      flex-flow: row nowrap;
+    }
     .showreel-link {
       width: 100%;
-      height: 175px;
+      height: 250px;
       margin: 5px;
       color: #fff;
       text-decoration: none;
       opacity: 0;
       transform: translateX(0%);
+
       @include tablet {
         width: 45%;
         height: 300px;
+      }
+
+      @include desktop {
+        height: 525px;
       }
       &:nth-of-type(2n) {
         transform: translateX(0%);
@@ -466,6 +553,7 @@ div.story-container {
       max-width: 700px;
     }
   }
+
   div.text-container {
     text-align: center;
     opacity: 0;
@@ -478,9 +566,35 @@ div.story-container {
         @include center-block;
       }
     }
+    @include desktop {
+      p {
+        margin-left: unset;
+        margin-right: auto;
+      }
+    }
     &.fade-down {
       animation: fade-down 0.5s ease-in-out;
       animation-fill-mode: forwards;
+      @include desktop {
+        animation: fade-in-left 0.5s ease-in-out;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+  @include desktop {
+    flex-direction: row;
+    img {
+      max-width: 400px;
+      margin-left: 50px;
+      height: 600px;
+    }
+    div.text-container {
+      width: 50%;
+      text-align: left;
+      padding-left: 20px;
+      div.link-button {
+        margin-left: unset;
+      }
     }
   }
 }
@@ -506,11 +620,19 @@ div.grey-container {
   @include flex-center-col-nowrap;
   padding: 40px 10%;
   margin: 40px 0;
+  width: 80%;
   h3 {
     margin: 0;
     max-width: 950px;
     @include tablet {
       @include font-size(1.8);
+    }
+  }
+  @include desktop {
+    margin: 60px auto;
+    padding: 60px;
+    h3 {
+      @include font-size(2.2);
     }
   }
 }
@@ -524,18 +646,22 @@ div.blog-list-wrapper {
   @include flex-center-col-nowrap;
   @include tablet {
     flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
   }
   a {
     height: 100%;
     width: 90%;
     opacity: 0;
-    
     &.fade-up {
       animation: fade-up-blog 0.5s 1 cubic-bezier(0.46, 0.03, 0.52, 0.96);
       animation-fill-mode: forwards;
     }
     @include tablet {
       width: 50%;
+    }
+    @include desktop {
+      width: 30%;
     }
     .insight-wrapper {
       height: auto;
@@ -693,11 +819,24 @@ div.title-wrapper {
 
 div.team-grid {
   @include flex-center-col-nowrap;
+  @include center-block;
+  max-width: 1180px;
+  @include tablet {
+    flex-flow: row wrap;
+    align-items: flex-start;
+  }
   div.team-wrapper {
     @include flex-center-col-nowrap;
     max-width: 350px;
     width: 80%;
     margin: 10px;
+    @include tablet {
+      width: 43%;
+      margin: 30px 20px;
+    }
+    @include desktop {
+      width: 29%;
+    }
     img.employee {
       margin: 0;
       min-width: 280px;
@@ -711,12 +850,17 @@ div.team-grid {
       margin-top: 20px;
       text-align: left;
       width: 100%;
+      opacity: 0;
       &.fade-down {
         animation: fade-down 0.5s ease-in-out;
         animation-fill-mode: forwards;
       }
       h2.team-title {
         margin: 0;
+        @include font-size(1.25);
+      }
+      p {
+        @include font-size(1);
       }
     }
   }
@@ -726,6 +870,7 @@ div.method-wrapper {
   width: 90%;
   padding-top: 30px;
   @include center-block;
+  max-width: 1180px;
   div.method-container {
     position: relative;
     margin-top: 20px;
@@ -733,20 +878,34 @@ div.method-wrapper {
     display: flex;
     align-items: baseline;
     flex-flow: row wrap;
+    @include tablet {
+      flex-flow: row nowrap;
+    }
     h2 {
       @include font-size(2.2);
       z-index: 2;
       width: 100%;
+      @include tablet {
+        width: 40%;
+      }
     }
     ul {
       width: 100%;
       margin: 0;
       padding: 0;
       list-style: none;
+      @include tablet {
+        width: 60%;
+      }
       li {
         padding: 10px 0;
         @include font-size(1.2);
         font-weight: 700;
+        opacity: 0;
+        &.fade-in {
+          animation: fade-in-left .5s 1;
+          animation-fill-mode: forwards;
+        }
       }
     }
   }
@@ -952,15 +1111,27 @@ footer.site-footer {
     text-decoration: none;
     color: #fff;
   }
-  div.about-us,
-  div.contact-us,
-  div.policy-links {
-    @include flex-center-col-nowrap;
-    margin: 20px auto;
-    p.header {
-      font-weight: 700;
-      margin-bottom: 10px;
-      @include font-size(1.1);
+  div.info-container {
+    div.about-us,
+    div.contact-us,
+    div.policy-links {
+      @include flex-center-col-nowrap;
+      margin: 20px auto;
+      p.header {
+        font-weight: 700;
+        margin-bottom: 10px;
+        @include font-size(1.1);
+      }
+    }
+    @include tablet {
+      display: flex;
+      align-items: baseline;
+      flex-flow: row wrap;
+      div.about-us,
+      div.contact-us,
+      div.policy-links {
+        align-items: flex-start;
+      }
     }
   }
   .social-icons {

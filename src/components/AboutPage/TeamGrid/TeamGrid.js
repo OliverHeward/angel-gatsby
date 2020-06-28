@@ -3,7 +3,7 @@ import TeamItem from "./TeamItem"
 import { StaticQuery, graphql } from "gatsby"
 
 const TeamGrid = () => (
-  <div className="team-grid">
+  <div className="team-grid content-width">
     <StaticQuery
       query={graphql`
         {

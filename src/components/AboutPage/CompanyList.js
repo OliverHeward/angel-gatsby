@@ -9,7 +9,7 @@ const CompanyList = company_logos => {
       </div>
     )
   });
-  return <div className="clients-container">{result}</div>
+  return <div className="clients-container content-width">{result}</div>
 }
 
 export default CompanyList

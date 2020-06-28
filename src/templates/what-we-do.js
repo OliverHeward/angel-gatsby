@@ -1,9 +1,9 @@
 import React from "react"
 import Layout from "../components/layout"
-import Hero from "../components/AboutPage/Hero"
 import ContentBelowHero from "../components/UI/ContentBelowHero"
 import List from "../components/UI/List"
 import InAction from "../components/Homepage/InAction"
+import CircleHero from "../components/UI/CircleHero"
 
 export default ({ pageContext }) => {
   const {
@@ -12,8 +12,12 @@ export default ({ pageContext }) => {
 
   return (
     <Layout>
-      <Hero {...page_hero} />
-      <ContentBelowHero title="What we do, for you." content={copy} />
+      <CircleHero {...page_hero} />
+      <ContentBelowHero
+        title="What we do, for you."
+        content={copy}
+        page={"what-we-do"}
+      />
       <div className="method-wrapper">
         {methods.map(method => (
           <List title={method.title} list={method.methods_list} />
