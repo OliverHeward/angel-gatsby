@@ -13,7 +13,7 @@ const WhatWeDo = () => {
   const { acf } = randomReview.node
 
   return (
-    <div className="what-we-do-container">
+    <div className="what-we-do-container content-width">
       <h1>What we do, for you.</h1>
       <p>
         From shorter tactical campaigns and activations to longer, strategic

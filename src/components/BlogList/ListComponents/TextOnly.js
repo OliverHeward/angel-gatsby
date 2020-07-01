@@ -6,7 +6,7 @@ const TextOnly = (edge) => {
   const ref = useRef();
   const onScreen = useOnScreen(ref, '0px', 0);
 
-  const { id, title, author, blog_title, date, slug } = edge.node;
+  const { id, title, author, blog_title, slug } = edge.node;
   return (
     <Link to={`/insight/${slug}`} ref={ref} className={onScreen ? 'fade-up' : ''}>
       <div className="insight-wrapper blog-post" ref={ref}  key={id}>

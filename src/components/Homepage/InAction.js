@@ -4,7 +4,7 @@ import useWordpressCaseStudy from "../../shared/hooks/get-case-studys"
 import { Link } from "gatsby"
 import useWordpressInAction from "../../shared/hooks/get-in-action"
 import { useOnScreen } from "../../shared/hooks/useOnScreen"
-
+/* eslint-disable no-unused-expressions */
 const InAction = () => {  
   // Create reference to object
   const ref = useRef()
@@ -22,9 +22,9 @@ const InAction = () => {
         },
       },
     },
-  } = useWordpressInAction()
-  const { edges } = useWordpressCaseStudy()
-
+  } = useWordpressInAction();
+  const { edges } = useWordpressCaseStudy();
+  console.log(edges);
   return (
     <div className="angel-in-action">
       <div className="text-container">
@@ -35,7 +35,7 @@ const InAction = () => {
       <div className="showreel-container" ref={ref}>
         {edges.map(post => (
           <Link
-            to={post.node.path}
+            to={`angel-in-action/${post.node.slug}`}
             key={post.node.id}
             className={`showreel-link ${onScreen ? "fade-in-mobile" : ""}`}
           >

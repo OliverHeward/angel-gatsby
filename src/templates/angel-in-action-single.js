@@ -44,11 +44,11 @@ export default ({ pageContext }) => {
   if (window.innerWidth < 1000) {
     carousel = <Carousel showArrows={true}>{image_section_one.map(one => (
       <div>
-        <img src={one.image.source_url} />
+        <img src={one.image.source_url} alt="Angel In Action" />
       </div>
     ))}</Carousel>
   } else {
-    carousel = image_section_one.map(one => <img src={one.image.source_url} />)
+    carousel = image_section_one.map(one => <img src={one.image.source_url} alt="Angel In Action" />)
   }
 
   return (

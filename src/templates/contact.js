@@ -30,8 +30,8 @@ export default ({ pageContext }) => {
           <span className="pink">WeWork 145 City Road, London EC1V 1AZ</span>
         </h2>
       </div>
-      <a href="https://goo.gl/maps/FmzcdwGAyvF2" target="_blank" className="map-wrapper">
-        <img src="https://www.angellondon.co.uk/wp-content/themes/angel-starter-master/assets/angel_map.jpg" className="map" />
+      <a href="https://goo.gl/maps/FmzcdwGAyvF2" target="_blank" className="map-wrapper" rel="noopener noreferrer">
+        <img src="https://www.angellondon.co.uk/wp-content/themes/angel-starter-master/assets/angel_map.jpg" className="map" alt="Angel Office on Google Maps" />
       </a>
     </Layout>
   )

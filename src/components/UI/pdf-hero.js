@@ -7,8 +7,7 @@ const PDFHero = (props) => {
                 <h1 className="page-title pdf-blog">{props.title}</h1>
                 <div className="pdf-form-container">
                     <p className="copy-above-form">To receive a free downloadable version of this report, please register your details below.</p>
-                    <div className="link-button">
-                        <div className="link" onClick={props.clicked}>Get the free report</div>
+                    <div className="link-button" onClick={props.clicked}>Get the free report
                     </div>
                 </div>
             </div>

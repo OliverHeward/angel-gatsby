@@ -14,6 +14,7 @@ import Header from "./header"
 import DarkMode from "./DarkMode"
 
 const Layout = ({ children }) => {
+  // Complete this function
   let header = <Header theme={"black"} />; 
   const changeImage = () => {
     if (document.body.classList.contains("light")) {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React, { useEffect } from "react"
 import HomeHero from "../components/HomeHero";
 import Layout from '../components/layout';

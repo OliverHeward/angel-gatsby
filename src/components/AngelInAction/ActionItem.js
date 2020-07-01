@@ -4,7 +4,7 @@ import LinkButton from "../UI/LinkButton"
 const ActionItem = ({ image, title, copy, link }) => {
   return (
     <div className="action-container">
-      <img src={image} className="action-image" />
+      <img src={image} className="action-image" alt=""/>
       <div className="text-container">
         <h3 className="action-title" dangerouslySetInnerHTML={{__html: title}}/>
         <p className="action-copy" dangerouslySetInnerHTML={{ __html: copy }} />

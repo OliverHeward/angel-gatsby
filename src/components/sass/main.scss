@@ -60,7 +60,7 @@ a {
     @include center-block;
     width: 90%;
     max-width: 1180px;
-  } 
+  }
 }
 
 // Header
@@ -158,7 +158,7 @@ div.button-wrapper {
       background-color: #e6339a;
       bottom: 10px;
       right: 0px;
-      transform: scale(11);
+      transform: scale(15);
       width: 400%;
       height: 400%;
       animation: open-nav 0.3s ease-in-out;
@@ -244,6 +244,10 @@ div.layout > div.text-container {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 100% 0;
+    @include desktop {
+      max-width: unset;
+      width: 100%;
+    }
   }
   .hero-zigzag,
   .hero-circle {
@@ -284,10 +288,22 @@ div.layout > div.text-container {
     }
   }
   &.what-we-do {
+    // remove content-width from this part
+    max-width: unset;
+    width: unset;
     @include tablet {
       max-width: 450px;
       margin-left: 50px;
     }
+    @include desktop {
+      max-width: 600px;
+    }
+  }
+}
+
+// What we do entry header
+div.wwd-entry-header {
+  @include desktop {
   }
 }
 
@@ -495,15 +511,6 @@ div.angel-in-action {
       text-decoration: none;
       opacity: 0;
       transform: translateX(0%);
-
-      @include tablet {
-        width: 45%;
-        height: 300px;
-      }
-
-      @include desktop {
-        height: 525px;
-      }
       &:nth-of-type(2n) {
         transform: translateX(0%);
       }
@@ -514,6 +521,21 @@ div.angel-in-action {
       &.fade-in-mobile:nth-of-type(2n) {
         animation: fade-in-right 0.6s 1;
         animation-fill-mode: forwards;
+      }
+      @include tablet {
+        width: 45%;
+        height: 300px;
+      }
+
+      @include desktop {
+        height: 525px;
+        opacity: 1;
+        // cancel mobile animation
+        &.fade-in-mobile,
+        &.fade-in-mobile:nth-of-type(2n) {
+          animation: unset;
+          animation-fill-mode: unset;
+        }
       }
     }
 
@@ -705,16 +727,38 @@ div.blog-list-wrapper {
   }
 }
 
+/*====================================
+  Blog Post - PDF Blog Hero Template
+=====================================*/
 .pdf-blog-hero {
-  padding: 30px 0;
+  padding: 50px 0;
   position: relative;
   @include flex-center;
   @include center-block;
   width: 90%;
   text-align: center;
-  h1 {
-    max-width: 500px;
-    margin: 35px auto;
+  div.flex-container {
+    padding-top: 35px;
+    h1 {
+      max-width: 500px;
+      width: 90%;
+      margin: 35px auto 55px;
+    }
+    div.pdf-form-container {
+      max-width: 350px;
+      margin: 0 auto;
+      p.copy-above-form {
+        color: $color__pink;
+        font-weight: bold;
+        margin-bottom: 25px;
+      }
+      div.link-button {
+        width: 100%;
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+      }
+    }
   }
 }
 
@@ -880,6 +924,10 @@ div.method-wrapper {
     flex-flow: row wrap;
     @include tablet {
       flex-flow: row nowrap;
+      margin-left: 50px;
+    }
+    @include desktop {
+      margin: 40px 0 40px 100px;
     }
     h2 {
       @include font-size(2.2);
@@ -887,6 +935,10 @@ div.method-wrapper {
       width: 100%;
       @include tablet {
         width: 40%;
+      }
+      @include desktop {
+        @include font-size(2.9);
+        width: 35%;
       }
     }
     ul {
@@ -903,8 +955,15 @@ div.method-wrapper {
         font-weight: 700;
         opacity: 0;
         &.fade-in {
-          animation: fade-in-left .5s 1;
+          animation: fade-in-left 0.5s 1;
           animation-fill-mode: forwards;
+        }
+        @include tablet {
+          margin-left: 30px;
+        }
+        @include desktop {
+          padding: 15px 0;
+          @include font-size(1.7);
         }
       }
     }
@@ -954,19 +1013,47 @@ div.backdrop {
 }
 
 div.modal {
-  height: calc(100vh - 10%);
   position: fixed;
   z-index: 10;
   background-color: $color__pink;
-  width: 90%;
-  @include center-block;
+  width: 100%;
+  height: 100%;
   box-shadow: 0px 1px 8px 0px #000;
-  padding: 20px 10px 30px;
-  left: 5%;
-  top: 5%;
+  padding: 30px 10px 30px;
+  left: 0;
+  display: none;
+  top: 0;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
   box-sizing: border-box;
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   overflow: scroll;
+  div.modal-content {
+    position: relative;
+    background-color: $color__pink;
+    margin: auto;
+    padding: 50px 10px;
+    width: 80%;
+    box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    &.slide-down {
+      animation: form-down 0.3s ease-in-out;
+      animation-fill-mode: forwards;
+    }
+    .close {
+      color: #000;
+      position: absolute;
+      top: 0;
+      right: 15px;
+      font-size: 50px;
+      font-weight: 700;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        color: #fff;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 form.pdf-form {
@@ -993,7 +1080,7 @@ form.pdf-form {
     cursor: pointer;
     user-select: none;
     padding-left: 35px;
-    margin: 12px auto 24px 0;
+    margin: 20px auto 25px 0;
     font-size: 0.7rem;
     height: 25px;
     color: #fff;
@@ -1041,6 +1128,16 @@ form.pdf-form {
   }
   p.small-copy {
     font-size: 0.7rem;
+  }
+  div.link-button {
+    width: 100%;
+    margin: 30px auto 10px;
+    button {
+      font-family: "Montserrat", sans-serif;
+      background: unset;
+      border: unset;
+      @include font-size(1);
+    }
   }
 }
 

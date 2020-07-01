@@ -9,7 +9,7 @@ const useWordpressCaseStudy = () => {
         title
         link
         id
-        path
+        slug
         acf {
           hero {
             hero_image {

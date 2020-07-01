@@ -13,12 +13,14 @@ export default ({ pageContext }) => {
   return (
     <Layout>
       <CircleHero {...page_hero} />
-      <ContentBelowHero
-        title="What we do, for you."
-        content={copy}
-        page={"what-we-do"}
-      />
-      <div className="method-wrapper">
+      <div className="wwd-entry-header content-width">
+        <ContentBelowHero
+          title="What we do, for you."
+          content={copy}
+          page={"what-we-do"}
+        />
+      </div>
+      <div className="method-wrapper content-width">
         {methods.map(method => (
           <List title={method.title} list={method.methods_list} />
         ))}

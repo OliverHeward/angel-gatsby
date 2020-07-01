@@ -1,19 +1,16 @@
-import React, { useEffect, useState, useRef } from "react"
+import React from "react"
 import Layout from "../components/layout"
 import ActionItem from "../components/AngelInAction/ActionItem"
 import { StaticQuery, graphql } from "gatsby"
 import WhatWeDo from "../components/WhatWeDo"
 import LetsTalk from "../components/UI/LetsTalk"
-import { useOnScreen } from "../shared/hooks/useOnScreen"
-
+/* eslint-disable no-unused-expressions */
 export default ({ pageContext }) => {
   const { title, acf } = pageContext;
   // Reference for the element that we want to detect is on screen
-  const ref = useRef();
 
   // Call the useOnScreen hook
   // pass ref & root marigin 
-  const onScreen = useOnScreen(ref, '100px');
   
 
   return (
@@ -47,14 +44,16 @@ export default ({ pageContext }) => {
         `}
         render={props => (
           <div className="action-wrapper">
-            {props.allWordpressWpAngelInAction.edges.map(item => (
+            {props.allWordpressWpAngelInAction.edges.map(item => {
+              console.log(item.node);
+              console.log(item.node.slug);
               <ActionItem
                 image={item.node.acf.hero.hero_image.source_url}
                 title={item.node.title}
                 copy={item.node.excerpt}
                 link={`angel-in-action/${item.node.slug}`}
               />
-            ))}
+            })}
           </div>
         )}
       />
