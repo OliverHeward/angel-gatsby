@@ -15,7 +15,7 @@ export default ({ pageContext }) => {
 
   return (
     <Layout>
-      <div className="text-container">
+      <div className="text-container aia-header logo-clearance content-width">
         <h1>{title}</h1>
         <p className="copy">{acf.subtitle}</p>
       </div>
@@ -43,17 +43,15 @@ export default ({ pageContext }) => {
           }
         `}
         render={props => (
-          <div className="action-wrapper">
-            {props.allWordpressWpAngelInAction.edges.map(item => {
-              console.log(item.node);
-              console.log(item.node.slug);
+          <div className="action-wrapper content-width">
+            {props.allWordpressWpAngelInAction.edges.map(item => (
               <ActionItem
                 image={item.node.acf.hero.hero_image.source_url}
                 title={item.node.title}
                 copy={item.node.excerpt}
                 link={`angel-in-action/${item.node.slug}`}
               />
-            })}
+            ))}
           </div>
         )}
       />

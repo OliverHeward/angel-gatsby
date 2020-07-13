@@ -3,8 +3,11 @@ import Layout from "../components/layout"
 import Hero from "../components/AboutPage/Hero"
 import ContentBelowHero from "../components/UI/ContentBelowHero"
 import InAction from "../components/Homepage/InAction"
-import { Carousel } from "react-responsive-carousel"
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import { Carousel } from "react-responsive-carousel"
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 export default ({ pageContext }) => {
   useEffect(() => {
@@ -26,6 +29,30 @@ export default ({ pageContext }) => {
   let project_choice = project_group.project_choice.label
   let project, carousel
 
+  var settings = {
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    responsive: [
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 1,
+          centerMode: true,
+          dots: true,
+        }
+      },
+      {
+        breakpoint: 1023,
+        settings: {
+          slidesToShow: 2,
+          dots: true,
+        }
+      }
+    ]
+  };
+
   // !TODO Check how many project choices are on the backend
   if (project_choice === "Video") {
     project = (
@@ -40,17 +67,6 @@ export default ({ pageContext }) => {
     project = <div className="project-image">project image</div>
   }
 
-  // Check the window with before choosing with image carousel type to use
-  if (window.innerWidth < 1000) {
-    carousel = <Carousel showArrows={true}>{image_section_one.map(one => (
-      <div>
-        <img src={one.image.source_url} alt="Angel In Action" />
-      </div>
-    ))}</Carousel>
-  } else {
-    carousel = image_section_one.map(one => <img src={one.image.source_url} alt="Angel In Action" />)
-  }
-
   return (
     <Layout>
       <Hero {...hero_image} />
@@ -59,7 +75,11 @@ export default ({ pageContext }) => {
         <h2 className="quote">{quotes.quote_one}</h2>
       </div>
       <div className="images-carousel">
-        {carousel}
+          <Slider {...settings}>{image_section_one.map(one => (
+          <div>
+            <img src={one.image.source_url} alt="Angel In Action" />
+          </div>
+        ))}</Slider>
       </div>
       <div className="text-container">
         <p className="copy-under-image">{text_section_one}</p>

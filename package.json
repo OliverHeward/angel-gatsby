@@ -25,7 +25,9 @@
     "react-helmet": "^6.0.0",
     "react-icons": "^3.10.0",
     "react-responsive-carousel": "^3.2.7",
-    "react-share": "^4.1.0"
+    "react-share": "^4.1.0",
+    "react-slick": "^0.26.1",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "prettier": "2.0.5"
