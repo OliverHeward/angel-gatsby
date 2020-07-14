@@ -62,13 +62,15 @@ a {
 
 .content-width {
   box-sizing: border-box;
+  width: 90%;
   @include desktop {
     @include center-block;
-    width: 90%;
     max-width: 1180px;
   }
 }
-
+div.layout {
+  overflow-x:hidden;
+}
 // Header
 header {
   position: fixed;
@@ -298,6 +300,24 @@ div.layout > div.text-container {
       @include font-size(3.4);
     }
   }
+  &.angel-in-action-single {
+    margin: -30px auto 0;
+    @include tablet {
+      p {
+        max-width: 650px;
+      }
+    }
+    @include desktop {
+      margin: -200px auto 100px;
+      h1 {
+        @include font-size(3.75);
+      }
+      p {
+        @include font-size(1.5);
+        max-width: 650px;
+      }
+    }
+  }
   &.what-we-do {
     // remove content-width from this part
     max-width: unset;
@@ -364,38 +384,144 @@ a.map-wrapper {
   }
 }
 
-// Angel In Action - Single Page
-div.quote-box {
-  padding: 15px 0px;
-  width: 90%;
-  @include center-block;
-  max-width: 1180px;
+// Hero Sqaure
+
+div.hero-sqaure {
   position: relative;
-  h2.quote {
-    text-align: left;
-    @include font-size(1.2);
+  height: 350px;
+  // overflow: hidden;
+  // padding: 30px 0;
+  @include tablet {
+    height: 375px;
   }
-  &:before,
-  &:after {
-    display: block;
-    z-index: 10;
-    content: "";
-    background-image: url("../../static/quotes.svg"); // add quotes svg here
+  @include desktop {
+    height: 500px;
+  }
+  svg.parrallax-hero {
+    overflow: hidden;
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    max-width: 1600px;
+    right: 0;
+    top: 0;
+    width: 700px;
     position: absolute;
-    width: 65px;
-    height: 65px;
+
+    .st0 {
+      fill: #fff; // _darkmode.scss switches this
+    }
+    @include tablet {
+      width: unset;
+      background-position: top right;
+    }
   }
-  &:before {
+  // svgs 
+  svg.blue-wot {
+    position: absolute;
+    width: 150px;
+    top: -80px;
+    right: 30%;
+    transform: rotate(-140deg);
+    path {
+      fill: $color__blue;
+    }
+    @include desktop {
+      width: 200px;
+      right: 40%;
+    }
+  } 
+
+  svg.pink-zig {
+    position: absolute;
+    bottom: 10px;
+    width: 150px;
+    left: -80px;
+    transform: rotate(-80deg);
+    path {
+      fill: $color__pink;
+    }
+    @include tablet {
+      width: 175px;
+    }
+    @include desktop {
+      width: 275px;
+      left: -115px;
+      bottom: 50px;
+    }
+  }
+  // Yellow SVG Sqaure
+  svg.square-yellow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    bottom: -5%;
+    right: 50px;
+    path {
+      fill: $color__yellow;
+    }
+    @include tablet {
+      width: 175px;
+      height: 175px;
+      bottom: -25%;
+    }
+    @media screen and (min-width: 900px) {
+      right: 125px;
+      bottom: -30%;
+    }
+    @include desktop {
+      width: 225px;
+      height: 225px;
+    }
+    @media screen and (min-width: 1300px) {
+      bottom: -45%;
+    }
+  }
+}
+
+// Quote Marks
+svg.quote-svg {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  fill: $color__pink;
+  &-left {
     top: 0;
     transform: scaleX(-1);
   }
-  &:after {
+  &-right {
     bottom: 0;
     right: 5%;
-    transform: scaleX(1) rotate(180deg);
+    transform: scaleX(-1) rotate(180deg);
   }
 }
+
+// Angel In Action - Single Page
+div.quote-box {
+  width: 90%;
+  padding: 50px 0px;
+  margin: 30px auto;
+  max-width: 1000px;
+  position: relative;
+  @include desktop {
+    margin: 50px auto;
+  }
+  h2.quote {
+    text-align: left;
+    @include font-size(1.2);
+    @include tablet {
+      @include font-size(1.7);
+      padding: 0 20px;
+      text-align: center;
+    }
+    @include desktop {
+      @include font-size(1.9);
+    }
+  }
+}
+
 div.project-container {
+  padding: 30px 0;
   div.project-video {
     max-width: 750px;
     @include flex-center;
@@ -423,15 +549,21 @@ div.images-carousel {
       }
     }
     div.slick-slide {
+      div div {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+      }
     }
     @include desktop {
       div.slick-slide {
         margin-left: 10px;
         margin-right: 10px;
-        div > div {
-          display: flex !important;
-          align-items: center;
-          justify-content: center;
+        &:nth-of-type(1) {
+          transform: scale(.95);
+        }
+        &:nth-of-type(3) {
+          transform: scale(.95);
         }
       }
       div.slick-track {
