@@ -13,8 +13,8 @@ const TeamItem = employee => {
     <div className="team-wrapper">
       <img src={image.source_url} className="employee" alt={title} />
       <div className={`text-container ${onScreen ? "fade-down" : ""}`} ref={ref} key={id}>
-        <h2 className="team-title">{title}</h2>
-        <p>{bio}</p>
+        <h2 className="team-title" dangerouslySetInnerHTML={{__html: title}} />
+        <p dangerouslySetInnerHTML={{__html: bio}} />
       </div>
     </div>
   )

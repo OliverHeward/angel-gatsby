@@ -63,10 +63,16 @@ a {
 .content-width {
   box-sizing: border-box;
   width: 90%;
+  @include center-block;
   @include desktop {
-    @include center-block;
     max-width: 1180px;
   }
+}
+.overspill-width {
+  box-sizing: border-box;
+  width: 90%;
+  max-width: 1350px;
+  @include center-block;
 }
 div.layout {
   overflow-x:hidden;
@@ -181,11 +187,10 @@ div.button-wrapper {
       text-align: left;
       position: fixed;
       top: 20px;
-      left: 50%;
+      left: 35%;
       margin-left: -25%;
       height: 80%;
       overflow: hidden;
-
       ul.nav-list {
         margin: 0;
         padding: 0;
@@ -201,6 +206,20 @@ div.button-wrapper {
             color: white;
             text-decoration: none;
           }
+        }
+      }
+      @include tablet {
+        left: 45%;
+        ul.nav-list li {
+          @include font-size(2);
+          margin: 20px 0;
+        }
+      }
+      @include desktop {
+        top: 30px;
+        ul.nav-list li {
+          @include font-size(3);
+          height: 70px;
         }
       }
     }
@@ -819,6 +838,34 @@ div.grey-container {
   padding: 40px 10%;
   margin: 40px 0;
   width: 80%;
+  svg.quote-mark {
+    position: absolute;
+    fill: $color__blue;
+    width: 80px;
+    height: 80px;
+    &.left-quote {
+      top: -30px;
+      left: -20px;
+      transform: scaleX(-1);
+    }
+    &.right-quote {
+      bottom: -30px;
+      right: -20px;
+      transform: scaleX(-1) rotate(180deg);
+    }
+    @include tablet {
+      width: 120px;
+      height: 120px;
+      &.left-quote {
+        top: -45px;
+        left: -30px;
+      }
+      &.right-quote {
+        bottom: -45px;
+        right: -30px;
+      }
+    }
+  }
   h3 {
     margin: 0;
     max-width: 950px;
@@ -845,11 +892,11 @@ div.blog-list-wrapper {
   @include tablet {
     flex-flow: row wrap;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: space-between; //space-evenly
   }
   a {
     height: 100%;
-    width: 90%;
+    width: 100%;
     opacity: 0;
     &.fade-up {
       animation: fade-up-blog 0.5s 1 cubic-bezier(0.46, 0.03, 0.52, 0.96);
@@ -868,6 +915,14 @@ div.blog-list-wrapper {
       &.blog-post {
         .insight-title {
           margin-top: 0;
+          font-weight: lighter;
+          @include font-size(2.2);
+          @include tablet {
+            @include font-size(2.7);
+          }
+          @include desktop {
+            @include font-size(3);
+          }
         }
       }
       h3.insight-type {
@@ -875,6 +930,7 @@ div.blog-list-wrapper {
         color: #000;
         @include font-size(1.75);
         margin: 0;
+        font-weight: lighter;
       }
       img {
         width: 100%;
@@ -1089,8 +1145,12 @@ div.team-grid {
 div.method-wrapper {
   width: 90%;
   padding-top: 30px;
+  margin-bottom: 30px;
   @include center-block;
   max-width: 1180px;
+  @include desktop {
+    margin-bottom: 60px;
+  }
   div.method-container {
     position: relative;
     margin-top: 20px;
@@ -1098,12 +1158,34 @@ div.method-wrapper {
     display: flex;
     align-items: baseline;
     flex-flow: row wrap;
+    svg {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      left: -45px;
+      top: 20px;
+      &.blue-zig {
+        fill: $color__blue;
+      }
+      &.wotsit-zig {
+        fill: $color__yellow;
+      }
+      &.square-zig {
+        fill: $color__pink;
+      }
+    }
     @include tablet {
       flex-flow: row nowrap;
       margin-left: 50px;
     }
     @include desktop {
       margin: 40px 0 40px 100px;
+      svg {
+        top: 40px;
+        width: 120px;
+        height: 120px;
+        left: -55px;
+      }
     }
     h2 {
       @include font-size(2.2);
@@ -1113,8 +1195,8 @@ div.method-wrapper {
         width: 40%;
       }
       @include desktop {
-        @include font-size(2.9);
-        width: 35%;
+        @include font-size(3.3);
+        width: 45%;
       }
     }
     ul {
@@ -1123,7 +1205,7 @@ div.method-wrapper {
       padding: 0;
       list-style: none;
       @include tablet {
-        width: 60%;
+        width: 55%;
       }
       li {
         padding: 10px 0;
@@ -1210,9 +1292,9 @@ div.action-wrapper {
   @include tablet {
     width: 90%;
     div.action-container {
-      img.action-image {
-        height: 400px;
-        border-radius: 5px;
+      a.action-link-wrap img {
+          height: 400px;
+          border-radius: 5px;
       }
       div.text-container {
         h3.action-title {
@@ -1229,9 +1311,14 @@ div.action-wrapper {
       &:hover {
         transform: scale(.99);
       }
-      img.action-image {
+      a.action-link-wrap {
+        width: 100%;
         height: 425px;
         width: 55%;
+      }
+      img.action-image {
+        width: 100%;
+        height: 100%;
       }
       div.text-container {
         padding: 10px 50px;
@@ -1244,7 +1331,7 @@ div.action-wrapper {
       }
     }
     div.action-container:nth-of-type(2n) {
-      img.action-image {
+      a.action-link-wrap {
         order: 1;
       }
       div.text-container {

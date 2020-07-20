@@ -46,7 +46,7 @@ const InAction = () => {
               }}
             >
               <div className="overlay">
-                <h2 className="showreel-title">{post.node.title}</h2>
+                <h2 className="showreel-title" dangerouslySetInnerHTML={{__html: post.node.title}} />
               </div>
             </div>
           </Link>

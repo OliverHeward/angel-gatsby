@@ -9,18 +9,13 @@ module.exports = {
     `gatsby-plugin-dark-mode`,
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-plugin-react-svg`,
+      resolve: `gatsby-plugin-svgr`,
       options: {
-        rule: {
-          include: /\.inline\.svg$/
-        }
-      }
-    },
-    {
-      resolve: `gatsby-plugin-react-svg`,
-      options: {
-        rule: {
-          include: /static/
+        prettier: true,
+        svgo: true,
+        svgoConfig: {
+          removeViewBox: true,
+          cleanupIDs: true
         }
       }
     },

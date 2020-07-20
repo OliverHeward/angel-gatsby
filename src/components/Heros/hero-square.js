@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../../static/square-hollow-yellow.svg';
+
 const HeroSquare = image => (
     <div className="hero-sqaure">
     <svg 

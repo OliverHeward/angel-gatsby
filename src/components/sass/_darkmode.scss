@@ -6,4 +6,22 @@ body.dark {
     div.hero-sqaure svg.parrallax-hero .st0 {
         fill: #1c1c1e;
     }
+
+    div.blog-list-wrapper a .insight-wrapper h3.insight-type {
+        color: white;
+    }
+    
+    div.hero .hero-zigzag,
+    div.hero .hero-circle {
+        fill: #1c1c1e;
+    }
+    div.client > img {
+        filter: invert(1);
+    }
+
+
+    // Text Shadowing
+    div.method-container h2 {
+        text-shadow: 0 1px 5px #000;
+    }
 }

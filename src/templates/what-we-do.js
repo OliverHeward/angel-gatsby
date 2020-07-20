@@ -4,11 +4,13 @@ import ContentBelowHero from "../components/UI/ContentBelowHero"
 import List from "../components/UI/List"
 import InAction from "../components/Homepage/InAction"
 import CircleHero from "../components/UI/CircleHero"
+import LetsTalk from "../components/UI/LetsTalk";
 
 export default ({ pageContext }) => {
   const {
     acf: { page_hero, copy, methods },
   } = pageContext
+
 
   return (
     <Layout>
@@ -21,11 +23,12 @@ export default ({ pageContext }) => {
         />
       </div>
       <div className="method-wrapper content-width">
-        {methods.map(method => (
-          <List title={method.title} list={method.methods_list} />
+        {methods.map((method, idx) => (
+          <List key={idx} title={method.title} svg={idx} list={method.methods_list} />
         ))}
       </div>
       <InAction />
+      <LetsTalk />
     </Layout>
   )
 }
