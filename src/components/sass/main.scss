@@ -73,6 +73,9 @@ a {
   width: 90%;
   max-width: 1350px;
   @include center-block;
+  @include desktop {
+    width: 100%;
+  }
 }
 div.layout {
   overflow-x:hidden;
@@ -885,6 +888,11 @@ div.grey-container {
 div.blog-list-section {
   width: 90%;
   @include center-block;
+  @include desktop {
+    h1 {
+      font-size: 3.4rem;
+    }
+  }
 }
 // Blog List Components
 div.blog-list-wrapper {
@@ -910,8 +918,10 @@ div.blog-list-wrapper {
     }
     .insight-wrapper {
       height: auto;
-      width: 90%;
       margin: 30px auto;
+      @include tablet {
+        width: 90%;
+      }
       &.blog-post {
         .insight-title {
           margin-top: 0;
@@ -930,13 +940,14 @@ div.blog-list-wrapper {
         color: #000;
         @include font-size(1.75);
         margin: 0;
-        font-weight: lighter;
+        font-weight: 400;
       }
       img {
         width: 100%;
         height: 100%;
         position: relative;
         margin: 10px 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,.12), 0 8px 10px rgba(0,0,0,.24);
       }
       div.text-container {
         padding: 10px 0;
@@ -992,11 +1003,51 @@ div.blog-list-wrapper {
       }
     }
   }
+  @include tablet {
+    div.flex-container {
+      max-width: 750px;
+      h1 {
+        @include font-size(3.5);
+        margin-bottom: 50px;
+        max-width: 650px;
+      }
+    }
+  }
+  @include desktop {
+    width: 100%;
+    div.flex-container {
+      display: flex;
+      align-items: center;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      max-width: 1180px;
+      width: 80%;
+      h1 {
+        text-align: left;
+        max-width: 595px;
+        padding-right: 10%;
+        width: 80%;
+      }
+
+      div.pdf-form-container {
+        min-height: 300px;
+        width: 50%;
+        margin-right: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column nowrap;
+        p.copy-above-form {
+          text-align: left;
+        }
+      }
+    }
+  }
 }
 
 .share-container {
   font-weight: 700;
-  @include center-block;
+  margin: 30px auto;
   width: 90%;
   padding: 30px 0;
   max-width: 1180px;
@@ -1008,6 +1059,33 @@ div.blog-list-wrapper {
   button {
     margin: 5px 10px 5px 0px;
     color: $color__pink !important;
+  }
+
+  @include tablet {
+    max-width: 1120px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    margin-bottom: 50px;
+    h1.share-title {
+      margin-right: 15px;
+      @include font-size(1.75);
+    }
+    button {
+      font-size: 1.75rem !important;
+      margin-right: 15px;
+    }
+  }
+  @include desktop {
+    h1.share-title {
+      @include font-size(2.25);
+      margin-right: 20px;
+    }
+    button {
+      font-size: 2.25rem !important;
+      margin-right: 20px;
+    }
   }
 }
 
@@ -1046,6 +1124,12 @@ div.blog-content-wrapper {
       }
     }
   }
+  @include tablet {
+    width: 80%;
+    max-width: 1120px;
+  }
+  @include desktop {
+  }
 }
 // ===== UI COMPONENTS ===== //
 div.link-button {
@@ -1074,12 +1158,23 @@ div.lets-talk {
   text-align: center;
   padding: 50px 10px 10px;
   h1.big-font {
-    max-width: 450px;
+    max-width: 650px;
     margin: 0 auto;
     a {
       color: #000;
       cursor: pointer;
       text-decoration: none;
+    }
+  }
+  @include tablet {
+    h1.big-font {
+      @include font-size(2.5);
+    }
+  }
+  @include desktop {
+    padding: 70px 10px 30px;
+    h1.big-font {
+      @include font-size(3.4);
     }
   }
 }
@@ -1354,6 +1449,39 @@ div.action-wrapper {
   }
 }
 
+// Insights Page
+div.insights-header.text-container {
+  padding-top: 130px;
+  margin-bottom: 40px !important; // override
+  p.entry-text {
+    max-width: 80%;
+  }
+  @include tablet {
+    padding-top: 150px;
+    margin-bottom: 60px !important; // override
+
+    h1.entry-title {
+      @include font-size(3.25);
+      max-width: 550px;
+      margin-left: 50px !important;
+    }
+    p.entry-text {
+      max-width: 750px;
+      margin-left: 50px !important;
+    }
+  }
+  @include desktop {
+    margin-bottom: 80px !important; // override
+    padding-top: 185px;
+    h1.entry-title {
+      @include font-size(3.75);
+    }
+    p {
+      max-width: 600px;
+    }
+  }
+}
+
 div.backdrop {
   overflow: scroll;
 
@@ -1397,7 +1525,7 @@ div.modal {
     .close {
       color: #000;
       position: absolute;
-      top: 0;
+      top: 15px;
       right: 15px;
       font-size: 50px;
       font-weight: 700;

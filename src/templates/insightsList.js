@@ -12,9 +12,9 @@ export default ({pageContext}) => {
 
     return (
         <Layout>
-            <div className="text-container">
-                <h1>Our insights.</h1>
-                <p>In a world that's awlays evolving, stay one step ahead.</p>
+            <div className="text-container insights-header">
+                <h1 className="entry-title">Our Insights.</h1>
+                <p className="entry-text">In a world that's awlays evolving, stay one step ahead.</p>
             </div>
             <BlogListItem insights={posts}/>
             <LetsTalk />
