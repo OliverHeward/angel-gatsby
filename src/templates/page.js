@@ -9,7 +9,6 @@ export default ({ pageContext }) => {
     return (
         <Layout>
             <h1 className="page-title">{pageContext.title}</h1>
-
             <div dangerouslySetInnerHTML={{__html: pageContext.context}} />
         </Layout>
     )

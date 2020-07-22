@@ -888,9 +888,20 @@ div.grey-container {
 div.blog-list-section {
   width: 90%;
   @include center-block;
+  @include tablet {
+    h1.blog-list-title, p.blog-list-copy {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
   @include desktop {
     h1 {
       font-size: 3.4rem;
+    }
+    h1.blog-list-title, p.blog-list-copy {
+      width: 90%;
+      max-width: 1120px;
     }
   }
 }
@@ -1092,7 +1103,9 @@ div.blog-list-wrapper {
 div.blog-content-wrapper {
   width: 90%;
   @include center-block;
-  @include flex-center-col-nowrap;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   a {
     color: $color__pink;
     font-weight: 700;
@@ -1102,6 +1115,7 @@ div.blog-content-wrapper {
   ul {
     margin: 0;
     padding: 0;
+    margin-top: 10px;
     margin-left: 15px;
     list-style: none;
     li {
@@ -1122,11 +1136,20 @@ div.blog-content-wrapper {
         counter-reset: unset;
         content: "";
       }
+      a {
+        transition: all .2s ease-in-out;
+        &:hover {
+          color: $color__blue;
+        }
+      }
     }
   }
   @include tablet {
     width: 80%;
     max-width: 1120px;
+    ul {
+      margin-top: 20px;
+    }
   }
   @include desktop {
   }

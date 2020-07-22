@@ -6,8 +6,8 @@ const BlogList = () => {
   const { edges } = useWordpressBlogList();
     return (    
         <div className="blog-list-section overspill-width">
-        <h1>Our Insights.</h1>
-        <p>In a world that's always evolving, stay one step ahead.</p>
+        <h1 className="blog-list-title">Our Insights.</h1>
+        <p className="blog-list-copy">In a world that's always evolving, stay one step ahead.</p>
             <BlogListItem insights={edges}/>
         </div>
     )
