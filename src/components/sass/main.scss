@@ -352,6 +352,24 @@ div.layout > div.text-container {
       max-width: 600px;
     }
   }
+  &.blog-post {
+    @include tablet {
+      margin-top: -150px;
+      margin-bottom: 100px;
+      h1 {
+        max-width: 450px;
+        @include font-size(3);
+      }
+    }
+    @include desktop {
+      margin-top: -250px;
+      margin-bottom: 150px;
+      h1 {
+        @include font-size(4);
+        max-width: 550px;
+      }
+    }
+  }
 }
 
 // What we do entry header
@@ -497,6 +515,40 @@ div.hero-sqaure {
     }
     @media screen and (min-width: 1300px) {
       bottom: -45%;
+    }
+  }
+}
+
+div.hero-post-square {
+  position: relative;
+  height: 350px;
+  margin-bottom: -50px;
+  svg.svg-parrallax {
+    overflow:hidden;
+    position: absolute;
+    background-attachment: fixed;
+    background-size: contain;
+    background-repeat: no-repeat;
+    max-width: 1600px;
+    right: 0;
+    top: 0;
+    width: 800px;
+    z-index: -1; 
+    .st0 {
+      fill: #fff;
+    }
+  }
+  @include tablet {
+    height: 375px;
+    svg.svg-parrallax {
+      width: 100%;
+      background-position: top right;
+    }
+  }
+  @include desktop {
+    height: 500px;
+    svg.svg-parrallax {
+
     }
   }
 }
@@ -1152,6 +1204,10 @@ div.blog-content-wrapper {
     }
   }
   @include desktop {
+    p, ol, ul, li {
+      max-width: 850px;
+      margin-right: auto;
+    }
   }
 }
 // ===== UI COMPONENTS ===== //

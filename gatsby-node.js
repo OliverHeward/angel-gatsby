@@ -212,10 +212,11 @@ exports.createPages = ({ graphql, actions }) => {
                           value
                           label
                         }
-                        project_text
                         project_video {
                           source_url
                         }
+                        project_text
+
                       }
                       text_section_two
                     }

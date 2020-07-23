@@ -35,7 +35,7 @@ export default ({ pageContext }) => {
     arrows: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 3, 
     responsive: [
       {
         breakpoint: 767,
@@ -54,7 +54,7 @@ export default ({ pageContext }) => {
       }
     ]
   };
-
+  console.log(project_group);
   // !TODO Check how many project choices are on the backend
   if (project_choice === "Video") {
     project = (
@@ -65,7 +65,9 @@ export default ({ pageContext }) => {
         <p className="copy-under-image content-width">{project_group.project_text}</p>
       </div>
     )
-  } else if (project_choice === "Image") {
+  } else if (project_choice === "Showreel") {
+    project = <div className="project-else">{project_choice}</div>
+  } else {
     project = <div className="project-image">project image</div>
   }
 

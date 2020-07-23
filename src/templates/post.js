@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import Layout from '../components/layout';
-import Hero from '../components/AboutPage/Hero';
 import ContentBelowHero from '../components/UI/ContentBelowHero';
 import BlogContent from '../components/UI/BlogContent';
 import ShareToSocial from '../components/UI/ShareToSocial';
 import LetsTalk from '../components/UI/LetsTalk';
 import BlogList from '../components/BlogList/BlogList';
+import HeroPostSquare from '../components/Heros/hero-post-square';
 
 export default ({pageContext}) => {
     const { title, acf: { blog_post: {
@@ -13,12 +13,12 @@ export default ({pageContext}) => {
         content
     }} } = pageContext;
     useEffect(() => {
-        console.log(content);
+        console.log(pageContext);
     })
     return (
         <Layout>
-            <Hero {...image} />
-            <ContentBelowHero title={title} content="" />
+            <HeroPostSquare {...image} />
+            <ContentBelowHero title={title} content={`By ${pageContext.author.name}`} page="blog-post"/>
             <BlogContent content={content} />
             <ShareToSocial content={title} />
             <BlogList />
