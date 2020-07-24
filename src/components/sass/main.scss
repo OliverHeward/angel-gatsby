@@ -30,6 +30,12 @@ ul {
   padding: 0;
 }
 
+// improve page scrolling speeds due to large image scale
+.hide-banner {
+  background-attachment: fixed;
+  opacity: 0;
+}
+
 // Fonts
 h1 {
   @include font-size(2);
@@ -706,14 +712,26 @@ div.work-component {
   width: 90%;
   margin-right: auto;
   margin-left: auto;
+  position: relative;
   img {
     display: flex;
     margin-left: auto;
     margin-top: 5px;
   }
+  svg.blue-wot {
+    position: absolute;
+    width: 200px;
+    bottom: -33.5px;
+    right: -35.5px;
+  }
   @include tablet {
     p {
       max-width: 550px;
+    }
+    svg.blue-wot {
+      width: 375px;
+      bottom: -90.5px;
+      right: -66px;
     }
   }
   @include desktop {
@@ -818,14 +836,45 @@ div.story-container {
   width: 90%;
   margin-top: 100px;
   @include flex-center-col-nowrap;
-  img {
-    z-index: 2;
-    @include tablet {
-      height: 550px;
-      max-width: 700px;
+  position: relative;
+  div.image-control {
+    position: relative;
+    img {
+      z-index: 2;
+      position: relative;
+      @include tablet {
+        height: 550px;
+        max-width: 700px;
+      }
+    } 
+  }
+  svg.pink-square {
+    position: absolute;
+    top: -80px;
+    left: -90px;
+    width: 200px;
+    height: 200px;
+    fill: $color__pink;
+    @include desktop {
+      width: 275px;
+      height: 275px;
+      top: -110px;
+      left: -80px;
     }
   }
-
+  svg.yellow-circle {
+    position: absolute;
+    display: none;
+    fill: $color__yellow;
+    @include desktop {
+      display: block;
+      bottom: -150px;
+      width: 300px; 
+      height: 300px;
+      right: -25%;
+      fill: $color__yellow;
+    }
+  }
   div.text-container {
     text-align: center;
     opacity: 0;

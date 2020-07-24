@@ -12,9 +12,11 @@ body.dark {
     }
     
     div.hero .hero-zigzag,
-    div.hero .hero-circle {
+    div.hero .hero-circle,
+    div.hero-post-square .svg-parrallax polygon{
         fill: #1c1c1e;
     }
+
     div.client > img {
         filter: invert(1);
     }
