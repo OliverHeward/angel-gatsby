@@ -289,6 +289,48 @@ div.layout > div.text-container {
   .hero-circle {
     fill: #fff;
   }
+
+  &.about-page {
+    position: relative;
+    svg.pink-square,
+    svg.square,
+    svg.yellow-circle,
+    svg.blue-wotsit {
+      position: absolute;
+    }
+    svg.pink-square {
+      display: block;
+      bottom: -10%;
+      right: 30px;
+      width: 75px;
+      height: 75px;
+      fill: $color__pink;
+    }
+    svg.square {
+      display: block;
+      top: 20px;
+      left: 18%;
+      width: 75px;
+      height: 75px;
+      fill: #000; // add darkmode
+    }
+    svg.yellow-circle {
+      display: block;
+      width: 40px;
+      height: 40px;
+      top: 90px;
+      left: 26%;
+      fill: $color__yellow;
+    }
+    svg.blue-wotsit {
+      width: 65px;
+      height: 65px;
+      top: 0;
+      right: 15%;
+      transform: rotate(65deg);
+      fill: $color__blue;
+    }
+  }
   @include tablet {
     height: 400px;
     svg.hero-zigzag {
@@ -297,6 +339,30 @@ div.layout > div.text-container {
     svg.hero-circle {
       background-position: 100% 100%;
     }
+    &.about-page {
+      svg.pink-square {
+        width: 125px;
+        height: 125px;
+        right: 50px;
+      }
+      svg.square {
+        width: 100px;
+        height: 100px;
+        left: 20%;
+        top: 30px;
+      }
+      svg.yellow-circle {
+        width: 55px;
+        height: 55px;
+        top: 115px;
+      }
+      svg.blue-wotsit {
+        width: 125px;
+        height: 125px;
+        right: 11%;
+        transform: rotate(75deg);
+      }
+    }
   }
   @include desktop {
     height: 500px;
@@ -304,6 +370,29 @@ div.layout > div.text-container {
       width: 100%;
       background-size: 70%;
       background-position: 100% -80px;
+    }
+    &.about-page {
+      svg.pink-square {
+        width: 155px;
+        height: 155px;
+        right: 80px;
+        bottom: -16%;
+      }
+      svg.square {
+        left: 36%;
+        width: 120px;
+        height: 120px;
+      }
+      svg.yellow-circle {
+        left: 40%;
+        top: 140px;
+        width: 80px;
+        height: 80px;
+      }
+      svg.blue-wotsit {
+        top: 5%;
+        right: 9%;
+      }
     }
   }
   @media screen and (min-width: 1450px) {
@@ -1312,7 +1401,24 @@ div.title-wrapper {
   @include center-block;
   max-width: 850px;
   text-align: center;
-  h1.title {
+  position: relative;
+  svg.blue-wotsit {
+    fill: $color__blue;
+    position: absolute;
+    width: 135px;
+    bottom: -20px;
+    left: -20%;
+    transform: rotate(-30deg);
+    z-index: -1;
+    @include tablet {
+      left: -10%;
+      width: 200px;
+      bottom: -30%;
+    }
+    @include desktop {
+      width: 300px;
+      left: -12%;
+    }
   }
 }
 

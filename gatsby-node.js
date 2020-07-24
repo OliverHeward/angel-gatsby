@@ -215,6 +215,17 @@ exports.createPages = ({ graphql, actions }) => {
                         project_video {
                           source_url
                         }
+                        showreel_group {
+                          image_0 {
+                            source_url
+                          }
+                          image_1 {
+                            source_url
+                          }
+                          image_2 {
+                            source_url
+                          }
+                        }
                         project_text
 
                       }

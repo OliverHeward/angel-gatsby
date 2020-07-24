@@ -22,7 +22,7 @@ export default ({ pageContext }) => {
       <Hero {...image} />
       <ContentBelowHero title={page_title} content={about_angel} />
       <CompanyList {...company_logos} />
-      <Title title={angel_team} />
+      <Title title={angel_team} setSVG={true} />
       <TeamGrid />
       <InAction />
       <LetsTalk />

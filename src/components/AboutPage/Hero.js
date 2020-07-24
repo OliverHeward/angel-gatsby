@@ -1,12 +1,16 @@
 import React, { useRef } from "react"
 import { useOnScreen } from "../../shared/hooks/useOnScreen";
+import {ReactComponent as HollowSquare} from "../../images/square-hollow-yellow.svg";
+import {ReactComponent as Wotsit} from "../../images/wotsit.svg";
+import {ReactComponent as Square} from "../../images/square.svg";
+import {ReactComponent as Circle} from "../../images/circle.svg";
 
 const Hero = image => {
   const ref = useRef();
   const onScreen = useOnScreen(ref, '0px', 0);
 
   return (
-    <div className="hero" ref={ref}>
+    <div className="hero about-page" ref={ref}>
       <svg
         id="zigzag-hero"
         data-name="Hero"
@@ -27,6 +31,11 @@ const Hero = image => {
           d="M1309.49,19.34c29.6-15.42,62.12-16.94,90.82-6.83s53.56,31.68,67.71,62.58l107.54,234.66,225.9-117.47A114,114,0,0,1,1920,199.69V0H1020.9l62.69,136.81Z"
         />
       </svg>
+      <HollowSquare className="pink-square" />
+      <Square className="square" />
+      <Circle className="yellow-circle" />
+      <Wotsit className="blue-wotsit" />
+
     </div>
   )
 }
