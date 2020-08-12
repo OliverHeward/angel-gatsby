@@ -34,7 +34,7 @@ const InAction = () => {
       <div className="showreel-container" ref={ref}>
         {edges.map(post => (
           <Link
-            to={`angel-in-action/${post.node.slug}`}
+            to={`/angel-in-action/${post.node.slug}`}
             key={post.node.id}
             className={`showreel-link ${onScreen ? "fade-in-mobile" : ""}`}
           >

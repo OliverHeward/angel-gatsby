@@ -130,12 +130,8 @@ module.exports = {
           "**/users",
           "**/menus",
           "**/posts",
-          `**/case study`,
-          '**/case',
-          `**/angel in action`,
           "**/angel-in-action",
           "**/testimonials",
-          "**/clients",
           "**/employees"
         ],
         // Set this to keep media sizes.

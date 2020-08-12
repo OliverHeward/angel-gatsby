@@ -1,18 +1,18 @@
-import React, { useEffect } from "react"
+import React from "react"
 import Layout from "../components/layout"
 import HeroSquare from "../components/Heros/hero-square"
 import ContentBelowHero from "../components/UI/ContentBelowHero"
 import InAction from "../components/Homepage/InAction"
-// import { Carousel } from "react-responsive-carousel"
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import LetsTalk from "../components/UI/LetsTalk"
 import QuoteBox from "../components/UI/QuoteBox"
 
-export default ({ pageContext }) => {
+import ProjectVideo from "../components/UI/ProjectVideo"
+import ProjectShowreel from "../components/UI/ProjectShowreel"
 
+export default ({ pageContext }) => {
   const {
     title,
     acf: {
@@ -21,6 +21,7 @@ export default ({ pageContext }) => {
       hero: { hero_image },
       image_section_one,
       text_section_one,
+      use_project_group,
       project_group,
     },
   } = pageContext
@@ -51,37 +52,13 @@ export default ({ pageContext }) => {
       },
     ],
   }
-  // !TODO Check how many project choices are on the backend
-  if (project_choice === "Video") {
-    project = (
-      <div className="project-video">
-        <video className="silent-video" autoPlay playsInline muted loop>
-          <source src={project_group.project_video.source_url}></source>
-        </video>
-        <p className="copy-under-image content-width">
-          {project_group.project_text}
-        </p>
-      </div>
-    )
-  } else if (project_choice === "Showreel") {
-    project = (
-      <div className="images-carousel">
-        <Slider {...settings}>
-          <div>
-            <img src={project_group.showreel_group.image_0.source_url} />
-          </div>
-          <div>
-            <img src={project_group.showreel_group.image_1.source_url} />
-          </div>
-          <div>
-            <img src={project_group.showreel_group.image_2.source_url} />
-          </div>
-        </Slider>
-        <p className="copy-under-image content-width">
-          {project_group.project_text}
-        </p>
-      </div>
-    )
+  if(use_project_group) {
+      // !TODO Check how many project choices are on the backend
+    if (project_choice === "Video") {
+      project = <ProjectVideo {...project_group} />
+    } else if (project_choice === "Showreel") {
+      project = <ProjectShowreel {...project_group} />
+    }
   }
 
   return (

@@ -25,16 +25,16 @@ const NavMenu = () => (
         <ul className="nav-list">
           {props.allWordpressWpApiMenusMenusItems.edges[0].node.items.map(
             item => (
-              <li key={item.wordpress_id}>
+                <li key={item.wordpress_id}>
                 <Link
                   className="nav-menu-item"
-                  to={item.object_slug}
+                  to={`/${item.object_slug}`}
                   key={item.wordpress_id}
                 >
                   {item.title}
                 </Link>
               </li>
-            )
+              )
           )}
         </ul>
       </nav>

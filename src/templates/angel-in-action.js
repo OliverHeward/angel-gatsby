@@ -49,7 +49,7 @@ export default ({ pageContext }) => {
                 image={item.node.acf.hero.hero_image.source_url}
                 title={item.node.title}
                 copy={item.node.excerpt}
-                link={`angel-in-action/${item.node.slug}`}
+                link={`/angel-in-action/${item.node.slug}`}
               />
             ))}
           </div>

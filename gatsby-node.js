@@ -44,7 +44,6 @@ exports.createPages = ({ graphql, actions }) => {
                   logo {
                     source_url
                   }
-                  dummy
                 }
                 methods {
                   title
@@ -145,23 +144,24 @@ exports.createPages = ({ graphql, actions }) => {
         const angelInAction = path.resolve("./src/templates/angel-in-action.js")
         const contactPage = path.resolve("./src/templates/contact.js")
         _.each(result.data.allWordpressPage.edges, edge => {
-          let edgeSwitch = edge.node.template
+          let edgeSwitch = edge.node.slug
           // Set RESULT -> default template to /page.js
           let result = slash(pageTemplate)
+          console.log(edge.node)
           switch (edgeSwitch) {
-            case "front-page.php":
+            case "home":
               result = slash(homepageTemplate)
               break
-            case "page-about.php":
+            case "about":
               result = slash(aboutTemplate)
               break
-            case "page-what-we-do.php":
+            case "what-we-do":
               result = slash(whatWeDoTemplate)
               break
-            case "archive-angel-in-action.php":
+            case "angel-in-action":
               result = slash(angelInAction)
               break
-            case "page-contact.php":
+            case "contact":
               result = slash(contactPage)
               break
             default:
@@ -338,6 +338,8 @@ exports.createPages = ({ graphql, actions }) => {
           // Post Template
           const postTemplate = path.resolve("./src/templates/post.js")
           const pdfTemplate = path.resolve("./src/templates/post-pdf.js")
+          const noteTemplate = path.resolve("./src/templates/post-note.js");
+          const musicTemplate = path.resolve("./src/templates/post-outbound.js");
           _.each(posts, post => {
             let postSwitch = post.node.acf.insight_type
             let postResult = slash(postTemplate)
@@ -345,8 +347,18 @@ exports.createPages = ({ graphql, actions }) => {
               case "PDF Post":
                 postResult = slash(pdfTemplate)
                 break
+              case "Instagram":
+                postResult = slash(musicTemplate)
+                break
+              case "Music":
+                postResult = slash(musicTemplate)
+                break
+              case "Notes":
+                postResult = slash(noteTemplate)
+                break
               default:
                 postResult = slash(postTemplate)
+                console.log(postSwitch)
                 break
             }
             createPage({
