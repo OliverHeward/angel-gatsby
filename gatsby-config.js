@@ -47,9 +47,9 @@ module.exports = {
          * Example : 'demo.wp-api.org' or 'www.example-site.com'
          */
         // ! CHANGE THIS WHEN DEPLOYING
-        baseUrl: process.env.API_URL,
+        baseUrl: 'angel.hewy.dev',
         // The protocol. This can be http or https.
-        protocol: process.env.API_PROTOCOL,
+        protocol: 'https',
         // The rest api route prefix that your WordPress site is using.
         // Sometimes this is modified by WordPress plugins.
         // If not set, it uses the default of "wp-json"
