@@ -1,5 +1,6 @@
 import React from 'react';
-
+import {ReactComponent as Square} from "../../images/square.svg";
+import {ReactComponent as Zigzag} from "../../images/zigzag-blue.svg";
 const PDFHero = (props) => {
     return (
         <div className="pdf-blog-hero">
@@ -11,6 +12,8 @@ const PDFHero = (props) => {
                     </div>
                 </div>
             </div>
+            <Square className="blue-square" />
+            <Zigzag className="yellow-zigzag" />
         </div>
     )
 }

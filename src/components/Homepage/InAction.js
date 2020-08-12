@@ -24,7 +24,6 @@ const InAction = () => {
     },
   } = useWordpressInAction();
   const { edges } = useWordpressCaseStudy();
-  console.log(edges);
   return (
     <div className="angel-in-action">
       <div className="text-container">

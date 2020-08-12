@@ -6,10 +6,6 @@ import LetsTalk from '../components/UI/LetsTalk';
 export default ({pageContext}) => {
     const {posts} = pageContext;
 
-    useEffect(() => {
-        console.log(pageContext);
-    });
-
     return (
         <Layout>
             <div className="text-container insights-header">

@@ -12,9 +12,6 @@ import LetsTalk from "../components/UI/LetsTalk"
 import QuoteBox from "../components/UI/QuoteBox"
 
 export default ({ pageContext }) => {
-  useEffect(() => {
-    // console.log(pageContext)
-  })
 
   const {
     title,
@@ -54,7 +51,6 @@ export default ({ pageContext }) => {
       },
     ],
   }
-  console.log(project_group)
   // !TODO Check how many project choices are on the backend
   if (project_choice === "Video") {
     project = (

@@ -17,9 +17,6 @@ export default ({ pageContext }) => {
   const { slide_content } = acf.hero_slider[0];
   const { about_angel, bio } = acf.page_content;
 
-  useEffect(() => {
-    // console.log("[acf]", acf.page_content)
-  })
   return (
     <Layout>
       <HomeHero {...slide_content} />

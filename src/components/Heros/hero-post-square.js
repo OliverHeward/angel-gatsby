@@ -1,5 +1,9 @@
 import React, { useRef } from "react"
 import { useOnScreen } from "../../shared/hooks/useOnScreen"
+import {ReactComponent as Circle} from "../../images/circle.svg";
+import {ReactComponent as Square} from "../../images/square.svg";
+import {ReactComponent as Wotsit} from "../../images/wotsit.svg";
+import {ReactComponent as Zigzag} from "../../images/zigzag-blue.svg";
 
 const HeroPostSquare = image => {
   const ref = useRef()
@@ -26,6 +30,10 @@ const HeroPostSquare = image => {
           ></polygon>
         </g>
       </svg>
+      <Circle className="pink-circle" />
+      <Square className="yellow-square" />
+      <Wotsit className="pink-wotsit" />
+      <Zigzag className="blue-zigzag" />
     </div>
   )
 }

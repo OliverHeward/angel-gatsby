@@ -10,9 +10,6 @@ import InAction from "../components/Homepage/InAction"
 import LetsTalk from "../components/UI/LetsTalk";
 
 export default ({ pageContext }) => {
-  useEffect(() => {
-    console.log(pageContext)
-  })
 
   const {
     acf: { image, about_angel, page_title, company_logos, angel_team },

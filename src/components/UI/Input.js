@@ -1,7 +1,6 @@
 import React from "react"
 
 const Input = props => {
-  console.log("[input props]", props)
 
   let inputElement = null
 

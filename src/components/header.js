@@ -3,7 +3,6 @@ import React from "react"
 import { Link } from "gatsby"
 
 const Header = ({ siteTitle, theme }) => {
-  console.log(theme)
   return (
     <header>
       <Link to="/home">

@@ -17,7 +17,6 @@ export default ({ pageContext }) => {
       pdf_post: { content },
     },
   } = pageContext
-  console.log(pageContext)
 
   const cancelForm = () => {
     setModal(!setModal)
@@ -25,9 +24,7 @@ export default ({ pageContext }) => {
   const divTest = event => {
     setModal(true)
   }
-
-
-
+  
   return (
     <Layout>
       <PDFHero title={title} clicked={divTest} />

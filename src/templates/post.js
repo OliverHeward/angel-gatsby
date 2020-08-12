@@ -12,9 +12,7 @@ export default ({pageContext}) => {
         image,
         content
     }} } = pageContext;
-    useEffect(() => {
-        console.log(pageContext);
-    })
+
     return (
         <Layout>
             <HeroPostSquare {...image} />

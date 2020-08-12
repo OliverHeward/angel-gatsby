@@ -2,9 +2,6 @@ import React, { useEffect } from "react";
 import Layout from "../components/layout";
 
 export default ({ pageContext }) => {
-    useEffect(() => {
-        console.log(pageContext);
-    })
 
     return (
         <Layout>

@@ -1,12 +1,14 @@
 import React from "react"
 import LinkButton from "../UI/LinkButton"
+import { Link } from "gatsby";
+
 
 const ActionItem = ({ image, title, copy, link }) => {
   return (
     <div className="action-container">
-      <a href={link} className="action-link-wrap">
+      <Link to={link} className="action-link-wrap">
         <img src={image} className="action-image" alt="" />
-      </a>
+      </Link>
       <div className="text-container">
         <h3
           className="action-title"

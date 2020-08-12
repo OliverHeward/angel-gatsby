@@ -4,7 +4,6 @@ import { ThemeToggler } from "gatsby-plugin-dark-mode"
 import { FaSun, FaMoon } from "react-icons/fa"
 
 const DarkMode = (props) => {
-    console.log(props);
   return (
     <div onClick={props.clicked} className="dark-holder">
       <ThemeToggler>
