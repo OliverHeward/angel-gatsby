@@ -47,9 +47,9 @@ module.exports = {
          * Example : 'demo.wp-api.org' or 'www.example-site.com'
          */
         // ! CHANGE THIS WHEN DEPLOYING
-        baseUrl: 'angel.hewy.dev',
+        baseUrl: process.env.API_URL,
         // The protocol. This can be http or https.
-        protocol: 'https',
+        protocol: process.env.API_PROTOCOL,
         // The rest api route prefix that your WordPress site is using.
         // Sometimes this is modified by WordPress plugins.
         // If not set, it uses the default of "wp-json"
@@ -101,7 +101,7 @@ module.exports = {
         cookies: {},
         // Set verboseOutput to true to display a verbose output on `npm run develop` or `npm run build`
         // It can help you debug specific API Endpoints problems.
-        verboseOutput: false,
+        verboseOutput: true,
         // Set how many pages are retrieved per API request.
         perPage: 100,
         // Search and Replace Urls across WordPress content.
