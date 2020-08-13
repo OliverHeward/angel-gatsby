@@ -13,6 +13,10 @@ The new Frontend UI for Angel London site, built in React using Gatsby.
 
 To make a copy of the site, please follow the set up steps below.
 
+# 🥳 v1 Initial Deployment - 13th Aug 2020
+  A live preview of this site can be found on the link below
+  [Angel Gatsby Site](https://gatsby.hewy.dev);
+
 ## 🚀 Set up
 
 1.  **Clone down repository and install packages.**
