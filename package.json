@@ -17,7 +17,7 @@
     "gatsby-plugin-sharp": "^2.6.27",
     "gatsby-plugin-svgr": "^2.0.2",
     "gatsby-source-filesystem": "^2.3.24",
-    "gatsby-source-wordpress": "^3.3.28",
+    "gatsby-source-wordpress": "^4.0.8",
     "gatsby-transformer-sharp": "^2.5.13",
     "intersection-observer": "^0.10.0",
     "node-sass": "^4.14.1",
